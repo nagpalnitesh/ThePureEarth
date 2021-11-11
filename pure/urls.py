@@ -16,6 +16,10 @@ Including another URLconf
 
 from django.urls import path
 from . import views
+
+
+app_name = 'pure'
+
 urlpatterns = [
     path('', views.home, name='home'),  # home page
     path('aboutus', views.about, name='about'),  # about page
@@ -35,4 +39,11 @@ urlpatterns = [
     path('error', views.error, name='error'),  # error page
     path('forgot-password', views.forget_password, name='forgot'),  # forgot password page
     path('reset-password/<token>', views.change_password, name='reset'),  # reset password page
+
+    # products urls
+    path('products', views.product_list, name='products_list'),  # products page
+    path('product/<slug:slug>', views.product_detail, name='product_detail'),  # product detail page
+    path('cart',views.cart_detail,name='cart_detail'),
+    path('add/<int:product_id>/', views.cart_add, name='cart_add'),
+    path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
 ]

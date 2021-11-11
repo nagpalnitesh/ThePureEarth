@@ -1,15 +1,18 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render, redirect
-import uuid
+import uuid, random
+from django.http.response import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from .helpers import send_forget_password_token
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
+from .forms import *
+from .cart import Cart
 
 # Create your views here.
 
@@ -76,13 +79,16 @@ def handleLogin(request):
 
         user = authenticate(username=loginusername, password=loginpass)
         user_auth_obj = UserAuth.objects.filter(user=user).first()
+        
         if not user_auth_obj.is_Verified:
             messages.error(request, 'Please verify your account')
             return redirect('/login')
+
         if user is not None:
             login(request, user)
             messages.success(request, 'You have been logged in successfully')
             return redirect('/')
+        
         else:
             messages.error(request, 'Invalid Credentials! Please Try Again')
             return redirect('/login')
@@ -222,3 +228,53 @@ def change_password(request, token):
         print(e)
 
     return render(request, 'registration/change_password.html', context)
+
+
+# Product List and Details Page
+# Product List
+def product_list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.filter(is_active=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+    return render(request, 'screens/Products.html', {'category': category, 'categories': categories, 'products': products})
+
+# Product Details
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug, is_active=True)
+    cart_product_form = CartAddProductForm()
+    return render(request,
+                  'screens/ProductDetail.html',
+                  {'product': product,
+                   'cart_product_form': cart_product_form})
+
+
+# Cart Page
+# Add to Cart
+@require_POST
+def cart_add(request, product_id):
+    cart=Cart(request)
+    product=get_object_or_404(Product,id=product_id)
+    form=CartAddProductForm(request.POST)
+    if form.is_valid():
+        cd=form.cleaned_data
+        cart.add(product=product,quantity=cd['quantity'],update_quantity=cd['update'])
+    return redirect('pure:cart_detail')   
+
+# Remove product from Cart
+def cart_remove(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+    return redirect('pure:cart_detail')
+
+# Cart Detail
+def cart_detail(request):
+    cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(
+                              initial={'quantity': item['quantity'],
+                              'update': True})
+    return render(request, 'screens/Cart.html', {'pure': cart})
