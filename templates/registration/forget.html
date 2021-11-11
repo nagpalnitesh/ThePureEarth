@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="signup">
+    <h1>Forget Password</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Message Alert -->
+        {% if messages %}
+        
+        {% for message in messages %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+        {% endfor %}
+        
+        {% endif %}
+        <!-- Alert Ends -->
+        <div class="form-group">
+            <label for="fusername">Username</label>
+            <input
+                type="text"
+                class="form-control"
+                id="fusername"
+                name="fusername"
+                placeholder="Enter your username"
+            >
+        </div>
+        <button type="submit" class="btn btn-success">
+            Submit
+        </button>
+    </form>
+</div>
+{% endblock %}

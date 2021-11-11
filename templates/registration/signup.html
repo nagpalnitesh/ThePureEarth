@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="signup">
+    <h1>Register to The Pure Earth</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Message Alert -->
+        {% if messages %}
+        
+        {% for message in messages %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+        {% endfor %}
+        
+        {% endif %}
+        <!-- Alert Ends -->
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+            >
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Full Name"
+            >
+        </div>
+        <div class="form-group">
+            <label for="email">Email ID</label>
+            <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="example@example.com"
+                aria-describedby="emailHelp"
+            >
+            <small id="emailHelp" class="form-text text-muted">
+                We'll never share your email with anyone else.
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="pass1">Password</label>
+            <input
+                type="password"
+                class="form-control"
+                id="pass1"
+                name="pass1"
+                placeholder="Enter your password"
+            >
+        </div>
+        <div class="form-group">
+            <label for="confpass">Confirm Password</label>
+            <input
+                type="password"
+                class="form-control"
+                id="confpass"
+                name="confpass"
+                placeholder="Enter your password again"
+            >
+        </div>
+        <button type="submit" class="btn btn-success">
+            Submit
+        </button>
+        <div class="signup">
+            Have an account?
+            <a href="/login">Login Now</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

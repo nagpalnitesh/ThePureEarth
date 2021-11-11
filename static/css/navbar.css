@@ -1,0 +1,24 @@
+.navbar {
+  border-bottom: 0.1em solid black;
+}
+
+.logo {
+  width: 50%;
+}
+
+/* .headlogo {
+  background-color: purple;
+}
+.menu {
+  background-color: orange;
+} */
+
+.menu .menulist {
+  margin-left: 69%;
+  /* background-color: red; */
+}
+.menu ul li {
+  width: fit-content;
+  margin-left: 1em;
+  /* background-color: aliceblue; */
+}

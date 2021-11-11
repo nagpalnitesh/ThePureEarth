@@ -1,0 +1,68 @@
+/* footer {
+  background-color: red;
+} */
+
+/* Footer content */
+
+.about,
+.quick,
+.footcontact {
+  padding: 2em 0 1em 0%;
+  text-align: justify;
+}
+
+.footerlogo img {
+  width: 50%;
+  margin: auto 25%;
+}
+
+.quick,
+.footcontact {
+  padding: 2% 0 2% 0.5em;
+}
+
+.quick h2,
+.footcontact h2 {
+  font-weight: bold;
+  padding: 1em 0;
+  width: 60%;
+  margin: auto;
+  text-transform: uppercase;
+}
+
+.quick p,
+.footcontact p {
+  padding: 1em 0;
+  width: 60%;
+  margin: auto;
+}
+
+/* ends */
+
+footer hr {
+  background-color: black;
+  height: 0.1em;
+  width: 100%;
+}
+
+/* Copyright and Social Media Links */
+
+footer .copy {
+  padding-top: 0.5em;
+}
+
+footer ul {
+  width: 40%;
+  margin-left: 60%;
+}
+footer .fsocial ul li {
+  display: inline-block;
+  margin: auto;
+  font-size: 24px;
+  padding: 0.1em 0 0 43%;
+}
+
+.footcontact i {
+  margin-right: 1em;
+}
+/* ends */
