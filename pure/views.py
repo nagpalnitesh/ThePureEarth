@@ -145,7 +145,7 @@ def handleSignup(request):
 # activate account function
 def activate_account(email, token):
     subject = 'Activate your account'
-    message = f'Hi, verify your account: http://127.0.0.1:8000/verify/{token}'
+    message = f'Hi, verify your account: https://pureearth.herokuapp.com/verify/{token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
