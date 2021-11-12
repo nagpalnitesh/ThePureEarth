@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Your Shopping Cart
+  Your shopping cart
 {% endblock %}
 
 {% block content %}
@@ -57,10 +57,10 @@
       </tbody>
     </table>
     <p class="text-right">
-      <a href="{% url 'pure:product_list' %}" class="button light">Continue shopping</a>
-      <!-- <a href="{% url 'orders:order_create' %}" class="button">
+      <a href="{% url 'pure:products_list' %}" class="button light">Continue shopping</a>
+      <a href="{% url 'orders:order_create' %}" class="button">
         Checkout
-      </a> -->
+      </a>
     </p>
 {% endif %}
 {% endblock %}

@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',  # Notifications
     'django.contrib.staticfiles',  # static files
     'corsheaders',  # Cross-Origin Resource Sharing
-    'pure'  # pure is the app that contains the pure-earth templates
+    'pure',  # pure app
+    'cart', # cart app
+    'orders', # orders app
+    'payment', # payment app
 ]
 
 MIDDLEWARE = [
@@ -69,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -135,6 +139,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 CART_SESSION_ID = 'cart' # Cart session id
 
@@ -152,6 +159,10 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# RazorPay Credentials
+RAZOR_KEY_ID = config('RAZORPAY_PUBLIC_KEY')
+RAZOR_KEY_SECRET = config('RAZORPAY_SECRET_KEY')
 
 # Heroku Deployment
 django_heroku.settings(locals())

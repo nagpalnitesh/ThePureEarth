@@ -74,6 +74,3 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('pure:product_detail', args=[self.slug])
-
-
-# namespace:name (pure:product_detail)

@@ -11,8 +11,7 @@ from django.views.decorators.http import require_POST
 from .helpers import send_forget_password_token
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from .forms import *
-from .cart import Cart
+from cart.forms import *
 
 # Create your views here.
 
@@ -253,28 +252,28 @@ def product_detail(request, slug):
 
 # Cart Page
 # Add to Cart
-@require_POST
-def cart_add(request, product_id):
-    cart=Cart(request)
-    product=get_object_or_404(Product,id=product_id)
-    form=CartAddProductForm(request.POST)
-    if form.is_valid():
-        cd=form.cleaned_data
-        cart.add(product=product,quantity=cd['quantity'],update_quantity=cd['update'])
-    return redirect('pure:cart_detail')   
+# @require_POST
+# def cart_add(request, product_id):
+#     cart=Cart(request)
+#     product=get_object_or_404(Product, id=product_id)
+#     form=CartAddProductForm(request.POST)
+#     if form.is_valid():
+#         cd=form.cleaned_data
+#         cart.add(product=product,quantity=cd['quantity'],update_quantity=cd['update'])
+#     return redirect('pure:cart_detail')   
 
-# Remove product from Cart
-def cart_remove(request, product_id):
-    cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
-    cart.remove(product)
-    return redirect('pure:cart_detail')
+# # Remove product from Cart
+# def cart_remove(request, product_id):
+#     cart = Cart(request)
+#     product = get_object_or_404(Product, id=product_id)
+#     cart.remove(product)
+#     return redirect('pure:cart_detail')
 
-# Cart Detail
-def cart_detail(request):
-    cart = Cart(request)
-    for item in cart:
-        item['update_quantity_form'] = CartAddProductForm(
-                              initial={'quantity': item['quantity'],
-                              'update': True})
-    return render(request, 'screens/Cart.html', {'pure': cart})
+# # Cart Detail
+# def cart_detail(request):
+#     cart = Cart(request)
+#     for item in cart:
+#         item['update_quantity_form'] = CartAddProductForm(
+#                               initial={'quantity': item['quantity'],
+#                               'update': True})
+#     return render(request, 'screens/Cart.html', {'cart': cart})
