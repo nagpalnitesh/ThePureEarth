@@ -30,10 +30,22 @@
                 </a>
             </li>
             {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
                     <p>{{user.username}}</p>
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
             </li>
             {% else %}
             <li class="nav-item">

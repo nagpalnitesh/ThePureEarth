@@ -27,8 +27,6 @@ def payment_process(request):
     print("Payment", order)
     if request.method == "POST":
         order.paid = True
-
-        order.save()
         print("Payment order", order.paid)
         orderitem = get_object_or_404(OrderItem, order=order)
         print("Order Item", orderitem.get_cost())

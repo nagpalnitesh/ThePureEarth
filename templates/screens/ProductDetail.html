@@ -1,24 +1,87 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block title %}
-    {{product.name}}
-{% endblock %}
-
 {% block content %}
 <div class="product-detail">
-    <!-- <img src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/no_image.png' %}{% endif %}"> -->
-    <h1>{{product.name}}</h1>
-    <h2>
-        <a href="{{ product.category.get_absolute_url }}">
-            {{product.category}}
-        </a>
-    </h2>
-    <p class="price">Rs {{ product.price }}</p>
-    <form action="{% url 'cart:cart_add' product.id %}" method="post">
-        {% csrf_token %}
-                {{ cart_product_form }}
-        <input type="submit" value="Add to cart">
-    </form>
-    {{ product.description|linebreaks }}
+    <div class="row">
+        <div class="col-sm-12 col-md-auto col-lg-4">
+            <div class="detailimg">
+                <img src="{{ product.image.url }}" alt="{{product.name}}">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-auto col-lg-8">
+            <div class="detailtxt">
+                <h1>{{product.name}}</h1>
+                <h3>Rs. {{ product.price }}</h3>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    <span style="display: none;">
+                        {{ cart_product_form }}
+                    </span>
+                    <input type="submit" value="Add to cart" class="addbtn">
+                </form>
+                <p>
+                    {{ product.main_desc}}
+                </p>
+                <ul>
+                    {% if product.benefits1 %}
+                    <li>
+                        {{ product.benefits1 }}
+                    </li>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+                        {% if product.benefits2 %}
+                    <li>
+                        {{ product.benefits2 }}
+                    </li>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+                    {% if product.benefits3 %}
+                    <li>
+                        {{ product.benefits3 }}
+                    </li>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+                    {% if product.benefits4 %}
+                    <li>
+                        {{ product.benefits4 }}
+                    </li>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+                    {% if product.benefits5 %}
+                    <li>
+                        {{ product.benefits5 }}
+                    </li>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+                </ul>
+                {% if product.description %}
+                <p>
+                    {{ product.description}}
+                </p>
+                {% else %}
+                <span></span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-auto col-lg-12">
+            <div class="detailtxt1">
+                <h2>Description</h2>
+                <p>
+                    {{ product.description1}}
+                </p>
+                <h2>Directions</h2>
+                <p>
+                    {{ product.directions}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <img src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/no_image.png' %}{% endif %}"> -->
 </div>
 {% endblock %}

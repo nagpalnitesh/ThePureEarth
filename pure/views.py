@@ -1,4 +1,5 @@
-import uuid, random
+import uuid
+import random
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
@@ -66,10 +67,11 @@ def profile(request):
 def error():
     return HttpResponse('404 - Page Not Found')
 
-
  # Login and Signup page
 
 # Signin page
+
+
 @csrf_exempt
 def handleLogin(request):
     if request.method == 'POST':
@@ -78,7 +80,7 @@ def handleLogin(request):
 
         user = authenticate(username=loginusername, password=loginpass)
         user_auth_obj = UserAuth.objects.filter(user=user).first()
-        
+
         if not user_auth_obj.is_Verified:
             messages.error(request, 'Please verify your account')
             return redirect('/login')
@@ -87,7 +89,7 @@ def handleLogin(request):
             login(request, user)
             messages.success(request, 'You have been logged in successfully')
             return redirect('/')
-        
+
         else:
             messages.error(request, 'Invalid Credentials! Please Try Again')
             return redirect('/login')
@@ -119,23 +121,30 @@ def handleSignup(request):
                 messages.error(request, 'Email already exists')
                 return redirect('/signup')
             if pass1 != confpass:
-                messages.error(request, 'Password and Confirm Password does not match')
+                messages.error(
+                    request, 'Password and Confirm Password does not match')
                 return redirect('/signup')
             if len(pass1) < 8:
-                messages.error(request, 'Password must be atleast 8 characters')
+                messages.error(
+                    request, 'Password must be atleast 8 characters')
                 return redirect('/signup')
             if len(username) < 6 and not username.isalnum():
-                messages.error(request, 'Username must be atleast 8 characters')
-                messages.error(request, 'Username should contain only letters and numbers')
+                messages.error(
+                    request, 'Username must be atleast 8 characters')
+                messages.error(
+                    request, 'Username should contain only letters and numbers')
                 return redirect('/signup')
             auth_token = str(uuid.uuid4())
             user_obj = User.objects.create(username=username, email=email)
             user_obj.set_password(pass1)
             user_obj.save()
-            user_auth_obj = UserAuth.objects.create(user=user_obj, auth_token=auth_token)
+            user_auth_obj = UserAuth.objects.create(
+                user=user_obj, auth_token=auth_token)
             user_auth_obj.save()
-            messages.success(request, 'Your The Pure Earth account has been successfully created')
-            messages.success(request, 'Please check your email for verification')
+            messages.success(
+                request, 'Your The Pure Earth account has been successfully created')
+            messages.success(
+                request, 'Please check your email for verification')
             activate_account(email, auth_token)
             return redirect('/login')
 
@@ -143,7 +152,7 @@ def handleSignup(request):
             print(e)
             messages.error(request, 'Something went wrong')
             return redirect('/signup')
-    
+
     return render(request, 'registration/signup.html')
 
 
@@ -189,11 +198,12 @@ def forget_password(request):
         user_obj = User.objects.get(username=username)
         token = str(uuid.uuid4())
         send_forget_password_token(user_obj.email, token)
-        userauth_obj = UserAuth.objects.get(user = user_obj)
+        userauth_obj = UserAuth.objects.get(user=user_obj)
         userauth_obj.forget_password_token = token
         userauth_obj.save()
         messages.success(request, 'Reset Password Sent')
-        messages.success(request, 'Please check your email for reset password link')
+        messages.success(
+            request, 'Please check your email for reset password link')
         return redirect('/login')
     except Exception as e:
         print(e)
@@ -241,6 +251,8 @@ def product_list(request, category_slug=None):
     return render(request, 'screens/Products.html', {'category': category, 'categories': categories, 'products': products})
 
 # Product Details
+
+
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, is_active=True)
     cart_product_form = CartAddProductForm()
@@ -248,32 +260,3 @@ def product_detail(request, slug):
                   'screens/ProductDetail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form})
-
-
-# Cart Page
-# Add to Cart
-# @require_POST
-# def cart_add(request, product_id):
-#     cart=Cart(request)
-#     product=get_object_or_404(Product, id=product_id)
-#     form=CartAddProductForm(request.POST)
-#     if form.is_valid():
-#         cd=form.cleaned_data
-#         cart.add(product=product,quantity=cd['quantity'],update_quantity=cd['update'])
-#     return redirect('pure:cart_detail')   
-
-# # Remove product from Cart
-# def cart_remove(request, product_id):
-#     cart = Cart(request)
-#     product = get_object_or_404(Product, id=product_id)
-#     cart.remove(product)
-#     return redirect('pure:cart_detail')
-
-# # Cart Detail
-# def cart_detail(request):
-#     cart = Cart(request)
-#     for item in cart:
-#         item['update_quantity_form'] = CartAddProductForm(
-#                               initial={'quantity': item['quantity'],
-#                               'update': True})
-#     return render(request, 'screens/Cart.html', {'cart': cart})

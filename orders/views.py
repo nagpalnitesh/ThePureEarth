@@ -10,17 +10,24 @@ from .tasks import order_created
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST)
-        if form.is_valid():
-            order = form.save()
-            for item in cart:
-                OrderItem.objects.create(order=order,
-                                         product=item['product'],
-                                         price=item['price'],
-                                         quantity=item['quantity'],)
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        email = request.POST['email']
+        address = request.POST['address']
+        city = request.POST['city']
+        pincode = request.POST['pincode']
+
+        order_obj = Order.objects.create(
+            first_name=fname, last_name=lname, email=email, address=address, city=city, postal_code=pincode)
+        order_obj.save()
+        for item in cart:
+            OrderItem.objects.create(order=order_obj,
+                                     product=item['product'],
+                                     price=item['price'],
+                                     quantity=item['quantity'],)
             cart.clear()
             # set the order in the session
-            request.session['order_id'] = order.id
+            request.session['order_id'] = order_obj.id
             # redirect for payment
             return redirect(reverse('payment:process'))
     else:
@@ -30,7 +37,7 @@ def order_create(request):
                       {'cart': cart, 'form': form})
 
 
-@staff_member_required
+@ staff_member_required
 def admin_order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, 'orders/admin/detail.html', {'order': order})
