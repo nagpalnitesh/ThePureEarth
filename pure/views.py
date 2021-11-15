@@ -187,6 +187,7 @@ def verify(request, auth_token):
 
 
 # forget password
+@csrf_exempt
 def forget_password(request):
     try:
         if request.method == 'POST':
@@ -240,6 +241,7 @@ def change_password(request, token):
 
 
 # froger username
+@csrf_exempt
 def forgot_username(request):
     try:
         if request.method == 'POST':
