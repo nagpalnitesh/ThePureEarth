@@ -11,13 +11,12 @@ def order_create(request):
     if request.method == 'POST':
         fname = request.POST['fname']
         lname = request.POST['lname']
-        email = request.POST['email']
         address = request.POST['address']
         city = request.POST['city']
         pincode = request.POST['pincode']
 
         order_obj = Order.objects.create(
-            first_name=fname, last_name=lname, email=email, address=address, city=city, postal_code=pincode)
+            first_name=fname, last_name=lname, address=address, city=city, postal_code=pincode)
         order_obj.save()
         for item in cart:
             OrderItem.objects.create(order=order_obj,

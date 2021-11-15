@@ -13,6 +13,7 @@ from .helpers import send_forget_password_token, send_username
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from cart.forms import *
+from orders.models import Order
 
 # Create your views here.
 
@@ -60,7 +61,8 @@ def contact(request):
 # Profile page
 @login_required
 def profile(request):
-    return render(request, 'dashboard/profile.html')
+    orders = Order.objects.all().order_by('id')
+    return render(request, 'dashboard/profile.html', {'orders': orders})
 
 
 # error page

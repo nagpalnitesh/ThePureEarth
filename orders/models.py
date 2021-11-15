@@ -1,12 +1,12 @@
 from django.db import models
-from pure.models import Product
+from pure.models import Product, UserAuth
 # Create your models here.
 
 
 class Order(models.Model):
+    user = models.ForeignKey(UserAuth, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.EmailField()
     address = models.CharField(max_length=250)
     postal_code = models.CharField(max_length=20)
     city = models.CharField(max_length=100)

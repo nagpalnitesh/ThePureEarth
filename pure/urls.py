@@ -47,4 +47,6 @@ urlpatterns = [
     path('products', views.product_list, name='products_list'),  # products page
     path('product/<slug:slug>', views.product_detail,
          name='product_detail'),  # product detail page
+
+    path('profile', views.profile, name='profile'),  # profile page
 ]
