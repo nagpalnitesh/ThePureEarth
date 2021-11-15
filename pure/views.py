@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from .helpers import send_forget_password_token
+from .helpers import send_forget_password_token, send_username
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from cart.forms import *
@@ -239,8 +239,29 @@ def change_password(request, token):
     return render(request, 'registration/change_password.html', context)
 
 
+# froger username
+def forgot_username(request):
+    try:
+        if request.method == 'POST':
+            email = request.POST.get('femail')
+            user_obj = User.objects.filter(email=email).first()
+        if user_obj is None:
+            messages.error(request, 'No user found')
+            return redirect('/forget-username')
+        user_obj = User.objects.get(
+            email=email)
+        send_username(user_obj.email, user_obj.username)
+        messages.success(
+            request, 'Please check your email for username')
+        return redirect('/login')
+    except Exception as e:
+        print(e)
+    return render(request, 'registration/forget_username.html')
+
 # Product List and Details Page
 # Product List
+
+
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()

@@ -9,3 +9,12 @@ def send_forget_password_token(email, token):
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
     return True
+
+
+def send_username(email, username):
+    subject = 'Your The Pure Earth account username'
+    message = f'Hi, your The Pure Earth account username is <b>{username}</b>'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+    return True

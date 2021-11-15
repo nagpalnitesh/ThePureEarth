@@ -34,13 +34,17 @@ urlpatterns = [
     path('login', views.handleLogin, name='login'),  # login page
     path('logout', views.handleLogout, name='logout'),  # logout page
     path('signup', views.handleSignup, name='register'),  # register page
-    #verify account
+    # verify account
     path('verify/<auth_token>', views.verify, name='verify'),
     path('error', views.error, name='error'),  # error page
-    path('forgot-password', views.forget_password, name='forgot'),  # forgot password page
-    path('reset-password/<token>', views.change_password, name='reset'),  # reset password page
-
+    path('forgot-password', views.forget_password,
+         name='forgot'),  # forgot password page
+    path('reset-password/<token>', views.change_password,
+         name='reset'),  # reset password page
+    path('forget-username', views.forgot_username,
+         name='forget username'),  # forgot username page
     # products urls
     path('products', views.product_list, name='products_list'),  # products page
-    path('product/<slug:slug>', views.product_detail, name='product_detail'),  # product detail page
+    path('product/<slug:slug>', views.product_detail,
+         name='product_detail'),  # product detail page
 ]
