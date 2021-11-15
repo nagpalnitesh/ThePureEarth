@@ -1,13 +1,13 @@
-/* footer {
-  background-color: red;
-} */
+footer {
+  border-top: 0.1em dashed rgba(129, 129, 129, 0.418);
+}
 
 /* Footer content */
 
 .about,
 .quick,
 .footcontact {
-  padding: 2em 0 1em 0%;
+  padding: 1em 0 0 0%;
   text-align: justify;
 }
 
@@ -16,6 +16,9 @@
   margin: auto 25%;
 }
 
+.quick {
+  margin: 1em auto 0 auto;
+}
 .quick,
 .footcontact {
   padding: 2% 0 2% 0.5em;
@@ -39,27 +42,20 @@
 
 /* ends */
 
-footer hr {
-  background-color: black;
-  height: 0.1em;
-  width: 100%;
-}
-
 /* Copyright and Social Media Links */
 
 footer .copy {
-  padding-top: 0.5em;
+  text-align: center;
 }
 
-footer ul {
-  width: 40%;
-  margin-left: 60%;
+.footcontact ul {
+  margin-top: 1em;
 }
-footer .fsocial ul li {
+
+.footcontact ul li {
   display: inline-block;
-  margin: auto;
-  font-size: 24px;
-  padding: 0.1em 0 0 43%;
+  font-size: 30px;
+  padding: 0.1em 0 0 20%;
 }
 
 .footcontact i {

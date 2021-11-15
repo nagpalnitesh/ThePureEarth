@@ -14,13 +14,8 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     braintree_id = models.CharField(max_length=150, blank=True)
-    Status = [
-        ('Ordered', 'Ordered'),
-        ('Shipped', 'Shipped'),
-        ('Delivered', 'Delivered'),
-    ]
-    order_status = models.CharField(
-        max_length=10, choices=Status, default='Ordered')
+    order_track_number = models.CharField(max_length=150, blank=True)
+    order_track_link = models.CharField(max_length=300, blank=True)
 
     class Meta:
         ordering = ('-created',)

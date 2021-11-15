@@ -1,0 +1,60 @@
+.login {
+  background-color: #cee1d88f;
+  width: 30%;
+  height: fit-content;
+  margin: auto;
+  border-radius: 1em;
+  padding: 1em 2em;
+  border: 0.1em solid rgba(128, 128, 128, 0.384);
+  box-shadow: inset 0.1em 0.1em 0.2em rgba(100, 100, 100, 0.5);
+}
+
+.login h1 {
+  text-align: center;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.signinform {
+  padding: 1em 0;
+}
+
+.signinform label {
+  font-size: 18px;
+  margin-top: 0.5em;
+}
+
+.signinform .email,
+.signinform .pass {
+  width: 95%;
+  margin: 0 5%;
+}
+
+.signinform .loginbtn {
+  background-color: #a7c6da;
+  width: 50%;
+  margin: 1em 25%;
+  padding: 1em 0;
+  border-radius: 0.5em;
+}
+
+.signinform .forgetpass {
+  text-align: right;
+}
+
+.signinform .signupbtn {
+  background-color: #a7c6da;
+  width: 50%;
+  margin: auto;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+.signinform .loginbtn:hover {
+  color: #6f382e;
+}
+
+.signinform .loginbtn:hover,
+.signinform .signupbtn:hover {
+  background-color: #79b9e7;
+}

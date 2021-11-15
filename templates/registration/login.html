@@ -1,7 +1,7 @@
 {% extends 'index.html' %} {% load static %} {% block content %}
-<div class="signup">
+<div class="login">
   <h1>Login to The Pure Earth</h1>
-  <form method="post">
+  <form method="post" class="signinform">
     {% csrf_token %}
     <!-- Message Alert -->
     {% if messages %} {% for message in messages %}
@@ -12,7 +12,7 @@
       <label for="loginusername">Username</label>
       <input
         type="text"
-        class="form-control"
+        class="form-control email"
         id="loginusername"
         name="loginusername"
         placeholder="Enter your username"
@@ -22,20 +22,29 @@
       <label for="loginpass">Password</label>
       <input
         type="password"
-        class="form-control"
+        class="form-control pass"
         id="loginpass"
         name="loginpass"
         placeholder="Enter your password"
       />
     </div>
-    <p>
+    <p style="text-align: right">
       <a href="/forget-username"> Forgot Username? </a> or
       <a href="/forgot-password"> Forgot Password? </a>
     </p>
-    <button type="submit" class="btn btn-success">Submit</button>
-    <div class="signup">
-      Don't have an account?
-      <a href="/signup">Create Now</a>
+    <button type="submit" class="btn loginbtn">
+      <strong>Login Now</strong>
+    </button>
+    <p>
+      By continuing, you agree to The Pure Earth's
+      <a href="/terms-and-conditions">Terms and Conditions</a> and
+      <a href="/privacy-policy">Privacy Policy</a>
+    </p>
+    <div style="text-align: center" class="signup">
+      <p style="text-align: center">Don't have an account?</p>
+      <a href="/signup">
+        <p class="signupbtn">Create Now</p>
+      </a>
     </div>
   </form>
 </div>

@@ -258,6 +258,7 @@ def forgot_username(request):
         return redirect('/login')
     except Exception as e:
         print(e)
+
     return render(request, 'registration/forget_username.html')
 
 # Product List and Details Page

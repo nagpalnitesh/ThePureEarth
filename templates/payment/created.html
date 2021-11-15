@@ -1,19 +1,19 @@
 {% extends "index.html" %}
-{% block title %}
- Thank you
-{% endblock %}
 {% block content %}
- <h1>Thank you</h1>
- <p>Complete payment details to confirm order<br> Your order number is
- <strong>{{ order_id }}</strong><br>
- Your pay amount is <strong>{{ amount }}</strong> </p>
+ <h1>Complete payment details to confirm order</h1>
+ <p>
+     Your order number is <strong>{{ order_id }}</strong>
+ </p>
+ <p>
+     Your pay amount is <strong>{{ amount }}</strong> 
+ </p>
 <form action="{% url 'payment:response' %}" method="POST">
 {% csrf_token %}
 <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key={{public_key}}
     data-amount={{ amountorig }}
-    data-buttontext="Pay with Razorpay"
+    data-buttontext="   Pay with Razorpay   "
     data-name="The Pure Earth"
     data-description=""
     data-image="https://cdn.razorpay.com/logos/I5BCKV50LxqCIa_medium.png"

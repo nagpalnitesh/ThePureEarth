@@ -1,24 +1,23 @@
 .navbar {
-  border-bottom: 0.1em solid black;
+  border-bottom: 0.1em dashed rgba(129, 129, 129, 0.418);
+}
+
+.headlogo {
+  width: 5%;
 }
 
 .logo {
-  width: 50%;
+  width: 100%;
 }
 
-/* .headlogo {
-  background-color: purple;
-}
-.menu {
-  background-color: orange;
-} */
-
-.menu .menulist {
-  margin-left: 69%;
-  /* background-color: red; */
-}
 .menu ul li {
   width: fit-content;
   margin-left: 1em;
-  /* background-color: aliceblue; */
+  height: fit-content;
+}
+
+.menu ul li a {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 18px;
 }

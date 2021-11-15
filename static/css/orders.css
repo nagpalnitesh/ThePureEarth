@@ -1,0 +1,46 @@
+.order_create {
+  padding: 1em;
+}
+
+.order-info {
+  margin: 1em 0;
+}
+
+.order-info h3 {
+  margin: 1em 0;
+}
+
+.order-info ul {
+  margin: 2em 0;
+  font-size: 20px;
+}
+
+.order-form {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.order-form input {
+  width: 90%;
+}
+
+.order-form .loginbtn {
+  background-color: #a7c6da;
+  width: 40%;
+  margin: 1em 30%;
+  padding: 1em 0;
+  border-radius: 0.5em;
+}
+
+.order-form .loginbtn:hover {
+  color: #6f382e;
+}
+
+.order-form .loginbtn:hover {
+  background-color: #79b9e7;
+}
+
+.order-form label {
+  font-size: 18px;
+  margin-top: 0.5em;
+}

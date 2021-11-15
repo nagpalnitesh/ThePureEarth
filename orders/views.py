@@ -4,7 +4,6 @@ from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from django.urls import reverse
-from .tasks import order_created
 
 
 def order_create(request):
