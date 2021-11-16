@@ -48,5 +48,8 @@ urlpatterns = [
     path('product/<slug:slug>', views.product_detail,
          name='product_detail'),  # product detail page
 
-    path('profile', views.profile, name='profile'),  # profile page
+    path('profile', views.profile,
+         name='profile'),  # profile page
+    # path('order-detail', views.orderdetail,
+    #     name='orderdetail'),  # order detail page
 ]

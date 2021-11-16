@@ -26,6 +26,8 @@ from django.urls import reverse
 
 class UserAuth(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50, blank=True, null=True)
+    last_name = models.CharField(max_length=50, blank=True, null=True)
     auth_token = models.CharField(max_length=50, null=True, blank=True)
     forget_password_token = models.CharField(
         max_length=50, null=True, blank=True)

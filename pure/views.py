@@ -1,19 +1,18 @@
 import uuid
-import random
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
+from orders.models import Order, OrderItem
 from .models import *
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
+# from django.views.decorators.http import require_POST
 from .helpers import send_forget_password_token, send_username
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from cart.forms import *
-from orders.models import Order
 
 # Create your views here.
 
@@ -61,7 +60,8 @@ def contact(request):
 # Profile page
 @login_required
 def profile(request):
-    orders = Order.objects.all().order_by('id')
+    userauth_obj = UserAuth.objects.filter(user=request.user).first()
+    orders = Order.objects.filter(user=userauth_obj).order_by('-id')
     return render(request, 'dashboard/profile.html', {'orders': orders})
 
 
@@ -111,6 +111,8 @@ def handleLogout(request):
 def handleSignup(request):
     if request.method == 'POST':
         username = request.POST['username']
+        firstname = request.POST['fname']
+        lastname = request.POST['lname']
         email = request.POST['email']
         pass1 = request.POST['pass1']
         confpass = request.POST['confpass']
@@ -137,7 +139,8 @@ def handleSignup(request):
                     request, 'Username should contain only letters and numbers')
                 return redirect('/signup')
             auth_token = str(uuid.uuid4())
-            user_obj = User.objects.create(username=username, email=email)
+            user_obj = User.objects.create(
+                username=username, email=email, first_name=firstname, last_name=lastname)
             user_obj.set_password(pass1)
             user_obj.save()
             user_auth_obj = UserAuth.objects.create(
@@ -286,3 +289,10 @@ def product_detail(request, slug):
                   'screens/ProductDetail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form})
+
+
+# Order Detail
+# def orderdetail(request, id):
+#     order = Order.objects.get(pk=id)
+#     orderitems = OrderItem.objects.filter(order=order).order_by('-id')
+#     return render(request, 'dashboard/orders.html', {'orderitems': orderitems})

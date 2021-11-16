@@ -1,105 +1,109 @@
 {% extends "index.html" %} {% block content %}
 <div class="order_create">
-  <h1>Checkout</h1>
-  <div class="order-info">
-    <h3>Your order</h3>
-    <ul>
-      {% for item in cart %}
-      <li style="list-style: none">
-        {{ item.quantity }}x {{ item.product.name }} :
-        <strong><span>Rs. {{ item.total_price }}</span></strong>
-      </li>
-      {% endfor %}
-    </ul>
-    <p><strong>Total Amount: Rs. {{ cart.get_total_price }}</strong></p>
-  </div>
-  <form action="." method="post" class="order-form">
-    {% csrf_token %}
-    <!-- {{ form.as_p }} -->
-    <div class="form-row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="fname">First Name:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fname"
-            name="fname"
-            placeholder="Enter Your First Name"
-            required
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="lname">Last Name:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lname"
-            name="lname"
-            placeholder="Enter Your Last Name"
-            required
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">Your Email:</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            value="{{user.email}}"
-            placeholder="Enter Your Email Address"
-            required
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="address">Address:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="address"
-            name="address"
-            placeholder="Enter Your Address"
-            required
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="city">City:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="city"
-            name="city"
-            placeholder="Enter Your City"
-            required
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="pincode">Postal Code:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="pincode"
-            name="pincode"
-            placeholder="Enter Your City Postal Code"
-            required
-          />
-        </div>
-      </div>
+    <h1>Checkout</h1>
+    <div class="order-info">
+        <h3>Your order</h3>
+        <ul>
+            {% for item in cart %}
+            <li style="list-style: none">
+                {{ item.quantity }}x {{ item.product.name }} :
+                <strong>
+                    <span>Rs. {{ item.total_price }}</span>
+                </strong>
+            </li>
+            {% endfor %}
+        </ul>
+        <p>
+            <strong>Total Amount: Rs. {{ cart.get_total_price }}</strong>
+        </p>
     </div>
-    <button type="submit" class="btn loginbtn">
-      <strong>Place Order</strong>
-    </button>
-  </form>
+    <form action="." method="post" class="order-form">
+        {% csrf_token %}
+        <!-- {{ form.as_p }} -->
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="fname"
+                        name="fname"
+                        placeholder="Enter Your First Name"
+                        required
+                    >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lname">Last Name:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lname"
+                        name="lname"
+                        placeholder="Enter Your Last Name"
+                        required
+                    >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        value="{{user.phone}}"
+                        placeholder="Enter Your Mobile Number"
+                        required
+                    >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="address"
+                        name="address"
+                        placeholder="Enter Your Address"
+                        required
+                    >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        name="city"
+                        placeholder="Enter Your City"
+                        required
+                    >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pincode">Postal Code:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="pincode"
+                        name="pincode"
+                        placeholder="Enter Your City Postal Code"
+                        required
+                    >
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn loginbtn">
+            <strong>Place Order</strong>
+        </button>
+    </form>
 </div>
 {% endblock %}

@@ -46,7 +46,7 @@ def order_detail(obj):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'first_name', 'last_name',
+    list_display = ['id', 'first_name', 'last_name', 'phone',
                     'address', 'postal_code', 'city', 'paid',
                     'braintree_id', 'created', 'updated', order_detail]
     list_filter = ['paid', 'created', 'updated']

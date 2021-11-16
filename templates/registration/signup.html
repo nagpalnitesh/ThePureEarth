@@ -1,86 +1,98 @@
 {% extends 'index.html' %} {% load static %} {% block content %}
 <div class="login">
-  <h1>Register to The Pure Earth</h1>
-  <form method="post" class="signinform">
-    {% csrf_token %}
-    <!-- Message Alert -->
-    {% if messages %} {% for message in messages %}
-    <div class="alert alert-info">{{ message }}</div>
-    {% endfor %} {% endif %}
-    <!-- Alert Ends -->
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        class="form-control email"
-        id="username"
-        name="username"
-        placeholder="Enter username"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input
-        type="text"
-        class="form-control email"
-        id="name"
-        name="name"
-        placeholder="Full Name"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="email">Email ID</label>
-      <input
-        type="email"
-        class="form-control email"
-        id="email"
-        name="email"
-        placeholder="example@example.com"
-        aria-describedby="emailHelp"
-        required
-      />
-      <small id="emailHelp" class="form-text text-muted">
-        We'll never share your email with anyone else.
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="pass1">Password</label>
-      <input
-        type="password"
-        class="form-control pass"
-        id="pass1"
-        name="pass1"
-        placeholder="Enter your password"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="confpass">Confirm Password</label>
-      <input
-        type="password"
-        class="form-control pass"
-        id="confpass"
-        name="confpass"
-        placeholder="Enter your password again"
-        required
-      />
-    </div>
-    <button type="submit" class="btn loginbtn">
-      <strong> Register Now </strong>
-    </button>
-    <p>
-      By continuing, you agree to The Pure Earth's
-      <a href="/terms-and-conditions">Terms and Conditions</a> and
-      <a href="/privacy-policy">Privacy Policy</a>
-    </p>
-    <div style="text-align: center" class="signup">
-      <p>Have an account?</p>
-      <a href="/login">
-        <p class="signupbtn">Login Now</p>
-      </a>
-    </div>
-  </form>
+    <h1>Register to The Pure Earth</h1>
+    <form method="post" class="signinform">
+        {% csrf_token %}
+        <!-- Message Alert -->
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %} {% endif %}
+        <!-- Alert Ends -->
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                class="form-control email"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="fname">First Name</label>
+            <input
+                type="text"
+                class="form-control email"
+                id="fname"
+                name="fname"
+                placeholder="First Name"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input
+                type="text"
+                class="form-control email"
+                id="lname"
+                name="lname"
+                placeholder="Last Name"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="email">Email ID</label>
+            <input
+                type="email"
+                class="form-control email"
+                id="email"
+                name="email"
+                placeholder="example@example.com"
+                aria-describedby="emailHelp"
+                required
+            >
+            <small id="emailHelp" class="form-text text-muted">
+                We'll never share your email with anyone else.
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="pass1">Password</label>
+            <input
+                type="password"
+                class="form-control pass"
+                id="pass1"
+                name="pass1"
+                placeholder="Enter your password"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="confpass">Confirm Password</label>
+            <input
+                type="password"
+                class="form-control pass"
+                id="confpass"
+                name="confpass"
+                placeholder="Enter your password again"
+                required
+            >
+        </div>
+        <button type="submit" class="btn loginbtn">
+            <strong> Register Now</strong>
+        </button>
+        <p>
+            By continuing, you agree to The Pure Earth's
+            <a href="/terms-and-conditions">Terms and Conditions</a>
+            and
+            <a href="/privacy-policy">Privacy Policy</a>
+        </p>
+        <div style="text-align: center" class="signup">
+            <p>Have an account?</p>
+            <a href="/login">
+                <p class="signupbtn">Login Now</p>
+            </a>
+        </div>
+    </form>
 </div>
 {% endblock %}
