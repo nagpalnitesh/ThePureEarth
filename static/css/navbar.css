@@ -154,7 +154,7 @@
   }
 
   .logo {
-    width: 100%;
+    width: 80%;
   }
 
   .menu ul li {
@@ -164,7 +164,7 @@
   }
 
   .menu ul li a {
-    margin-top: 4em;
+    margin-top: 3em;
     text-align: center;
     font-size: 18px;
   }
