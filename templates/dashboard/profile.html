@@ -92,13 +92,16 @@
             <div class="orderbox">
                 <div class="row" style="text-align: center;">
                     <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
-                        OrderId/ Track Order
+                        OrderId
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
                         Payment Status
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
                         Order Placed On
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
+                        Track Your Order
                     </div>
                     {% for order in orders %}
                     {% if order.paid %}
