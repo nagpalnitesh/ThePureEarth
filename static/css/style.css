@@ -72,6 +72,10 @@ p {
   font-size: 18px;
 }
 
+input {
+  text-transform: lowercase;
+}
+
 /* row and col */
 .row {
   width: 100%;
