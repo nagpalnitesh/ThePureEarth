@@ -56,9 +56,9 @@ cart {% endblock %} {% block content %}
           {% endwith %} {% endfor %}
           <div class="cartcheckitem">
             <p class="cartch">
-              <a href="{% url 'pure:products_list' %}" class="shopcont"
-                >Continue shopping</a
-              >
+                  <a href="{% url 'pure:products_list' %}" class="shopcont">
+                  Continue shopping
+                </a>
               {% if user.is_authenticated%}
               <a href="{% url 'orders:order_create' %}" class="cartcheck">
                 Checkout
