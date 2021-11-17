@@ -92,7 +92,7 @@
             <div class="orderbox">
                 <div class="row" style="text-align: center;">
                     <div class="col-sm-12 col-md-auto col-lg-4 statictxt">
-                        OrderId
+                        OrderId/ Track Order
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-4 statictxt">
                         Payment Status
@@ -103,10 +103,12 @@
                     {% for order in orders %}
                     {% if order.paid %}
                     <div class="col-sm-12 col-md-auto col-lg-4">
-                        <strong>TPE{{order.id}}</strong>
+                        <a href="{{order.order_track_link}}">
+                            <strong>TPE{{order.id}}</strong>
+                        </a>
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-4">
-                        {{ order.paid }}
+                        {{ order.braintree_id }}
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-4">
                         {{order.created}}
