@@ -5,7 +5,7 @@
      Your order number is <strong>TPE{{ order_id }}</strong>
  </p>
  <p>
-     Your pay amount is <strong>{{ amount }}</strong> 
+     Your pay amount is <strong>Rs. {{ amount }}</strong> 
  </p>
 <form action="{% url 'payment:response' %}" method="POST">
 {% csrf_token %}
