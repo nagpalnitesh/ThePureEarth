@@ -101,6 +101,7 @@
                         Order Placed On
                     </div>
                     {% for order in orders %}
+                    {% if order.paid %}
                     <div class="col-sm-12 col-md-auto col-lg-4">
                         <strong>TPE{{order.id}}</strong>
                     </div>
@@ -111,6 +112,7 @@
                         {{order.created}}
                     </div>
                     <hr>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
