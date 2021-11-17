@@ -102,9 +102,7 @@
                     </div>
                     {% for order in orders %}
                     <div class="col-sm-12 col-md-auto col-lg-4">
-                        <a href="{% url 'orders:order_detail' order.id %}">
-                            TPE{{order.id}}
-                        </a>
+                        <strong>TPE{{order.id}}</strong>
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-4">
                         {{ order.paid }}
