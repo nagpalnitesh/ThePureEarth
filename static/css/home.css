@@ -87,11 +87,10 @@
 
 .cardbox .cardtxt {
   position: absolute;
-  left: 45%;
+  left: 50%;
   top: 15%;
   text-align: center;
   padding: 1em;
-  width: 70%;
   height: fit-content;
   transform: translate(-50%, -50%);
   color: white;
@@ -948,11 +947,11 @@
 
   .cardbox .cardtxt {
     position: absolute;
-    left: 45%;
+    left: 50%;
     top: 15%;
     text-align: center;
     padding: 1em;
-    width: 70%;
+    width: 80%;
     height: fit-content;
     transform: translate(-50%, -50%);
     color: white;
