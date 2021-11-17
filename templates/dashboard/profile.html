@@ -91,27 +91,30 @@
         <div class="col-sm-12 col-md-auto col-lg-8">
             <div class="orderbox">
                 <div class="row" style="text-align: center;">
-                    <div class="col-sm-12 col-md-auto col-lg-4 statictxt">
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
                         OrderId/ Track Order
                     </div>
-                    <div class="col-sm-12 col-md-auto col-lg-4 statictxt">
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
                         Payment Status
                     </div>
-                    <div class="col-sm-12 col-md-auto col-lg-4 statictxt">
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
                         Order Placed On
                     </div>
                     {% for order in orders %}
                     {% if order.paid %}
-                    <div class="col-sm-12 col-md-auto col-lg-4">
-                        <a href="{{order.order_track_link}}">
-                            <strong>TPE{{order.id}}</strong>
-                        </a>
+                    <div class="col-sm-12 col-md-auto col-lg-3">
+                        <strong>TPE{{order.id}}</strong>
                     </div>
-                    <div class="col-sm-12 col-md-auto col-lg-4">
+                    <div class="col-sm-12 col-md-auto col-lg-3">
                         {{ order.braintree_id }}
                     </div>
-                    <div class="col-sm-12 col-md-auto col-lg-4">
+                    <div class="col-sm-12 col-md-auto col-lg-3">
                         {{order.created}}
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3">
+                        <a href="{{order.order_track_link}}">
+                            <strong>{{order.order_track_number}}</strong>
+                        </a>
                     </div>
                     <hr>
                     {% endif %}
