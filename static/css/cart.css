@@ -2,6 +2,10 @@
   padding: 1em 0;
 }
 
+.cartch {
+  text-align: right;
+}
+
 .cart_add h1 {
   font-size: 30px;
 }
@@ -137,6 +141,10 @@
 @media (max-width: 575.98px) {
   .cart_add {
     padding: 1em 0;
+  }
+
+  .cartch {
+    text-align: center;
   }
 
   .cart_add h1 {
@@ -280,6 +288,10 @@
     font-size: 30px;
   }
 
+  .cartch {
+    text-align: center;
+  }
+
   .cartempty {
     text-align: center;
     font-weight: bold;
@@ -411,6 +423,10 @@
 @media (min-width: 768px) and (max-width: 991.98px) {
   .cart_add {
     padding: 1em 0;
+  }
+
+  .cartch {
+    text-align: center;
   }
 
   .cart_add h1 {
