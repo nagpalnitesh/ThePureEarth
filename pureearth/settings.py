@@ -30,7 +30,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['pureearth.herokuapp.com', '127.0.0.1']
 
-#Access-Control-Allow-Origin: '127.0.0.1'
+# Access-Control-Allow-Origin: '127.0.0.1'
 
 # Application definition
 
@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',  # static files
     'corsheaders',  # Cross-Origin Resource Sharing
     'pure',  # pure app
-    'cart', # cart app
-    'orders', # orders app
-    'payment', # payment app
+    'cart',  # cart app
+    'orders',  # orders app
+    'payment',  # payment app
 ]
 
 MIDDLEWARE = [
@@ -143,7 +143,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-CART_SESSION_ID = 'cart' # Cart session id
+CART_SESSION_ID = 'cart'  # Cart session id
 
 CORS_ORIGIN_ALLOW_ALL = True  # CORS ORIGIN ALLOW ALL
 
@@ -152,11 +152,11 @@ CORS_ORIGIN_ALLOW_ALL = True  # CORS ORIGIN ALLOW ALL
 
 # E-MAIL Credentials
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
