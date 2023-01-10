@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="products">
+    <h1>Our Products</h1>
+    <div class="row">
+        <div class="col-sm-12 col-md-auto col-lg-12">
+            {% for product in products %}
+            <div class="item">
+                <div class="row itemrow">
+                    <div class="col-sm-12 col-md-auto col-lg-4">
+                        <div class="prodimage">
+                            <img src="{% if product.image %}{{ product.image.url }}
+                    {% else %}
+                        {% static 'img/no_image.png' %}
+                    {% endif %}">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-8">
+                        <div class="prodtxt">
+                            <h2>{{product.name}}</h2>
+                            <p>{{product.b_description}}</p>
+                            <a href="{{ product.get_absolute_url }}">
+                                <p>
+                                    Explore Now
+                                    <i class="fas fa-arrow-right"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

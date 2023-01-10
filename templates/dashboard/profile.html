@@ -1,0 +1,130 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="profile">
+    <div class="row">
+        <div class="col-sm-12 col-md-auto col-lg-4">
+            <div class="profilebox">
+                <h2>
+                    <strong>
+                        Update your profile
+                    </strong>
+                </h2>
+                <form method="post" class="signinform">
+                    {% csrf_token %}
+                    <!-- Message Alert -->
+                    {% if messages %} {% for message in messages %}
+                    <div class="alert alert-info">{{ message }}</div>
+                    {% endfor %} {% endif %}
+                    <!-- Alert Ends -->
+                    <h2>
+                        Your Username: {{user.username}}
+                    </h2>
+                    <div class="form-group">
+                        <label for="upfname">First Name</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="upfname"
+                            name="upfname"
+                            value="{{user.first_name}}"
+                            placeholder="First Name"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="uplname">Last Name</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="uplname"
+                            name="uplname"
+                            value="{{user.last_name}}"
+                            placeholder="Last Name"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="upemail">Email ID</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="upemail"
+                            name="upemail"
+                            value="{{user.email}}"
+                            placeholder="example@example.com"
+                            aria-describedby="emailHelp"
+                            required
+                        >
+                        <small id="emailHelp" class="form-text text-muted">
+                            We'll never share your email with anyone else.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass2">Password</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="pass2"
+                            name="pass2"
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="confpass1">Confirm Password</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="confpass1"
+                            name="confpass1"
+                            placeholder="Enter your password again"
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn loginbtn">
+                        <strong>Update Now</strong>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-auto col-lg-8">
+            <div class="orderbox">
+                <div class="row" style="text-align: center;">
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
+                        OrderId
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
+                        Payment Status
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
+                        Order Placed On
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
+                        Track Your Order
+                    </div>
+                    {% for order in orders %}
+                    {% if order.paid %}
+                    <div class="col-sm-12 col-md-auto col-lg-3">
+                        <strong>TPE{{order.id}}</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3">
+                        {{ order.braintree_id }}
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3">
+                        {{order.created}}
+                    </div>
+                    <div class="col-sm-12 col-md-auto col-lg-3">
+                        <a href="{{order.order_track_link}}" target="_blank">
+                            <strong>{{order.order_track_number}}</strong>
+                        </a>
+                    </div>
+                    <hr>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.2em;
+}
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 1em;
+}
+/* ends */
+
+/* wrapper content and footer */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  height: fit-content;
+  padding: 0 5%;
+}
+
+.content {
+  flex-grow: 1;
+}
+/* ends */
+
+body {
+  margin: 0%;
+  padding: 0%;
+}
+
+.container-fluid {
+  margin: 0%;
+  padding: 0 5%;
+}
+
+.main {
+  padding: 1em 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #6f382e;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 18px;
+}
+
+input {
+  text-transform: lowercase;
+}
+
+/* row and col */
+.row {
+  width: 100%;
+  margin: auto;
+}
+/* ends */

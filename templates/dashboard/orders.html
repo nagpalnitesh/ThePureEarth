@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="order-detail">
+    <div class="order">
+        {% for item in orderitems %}
+                {{item.product}}
+                {{ item.price }}
+                {{item.quantity}}
+                {% if item.order.paid %}
+        <p>
+            {{item.order.braintree_id}}
+        </p>
+        {% else %}
+                    Unpaid
+                {% endif %}
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

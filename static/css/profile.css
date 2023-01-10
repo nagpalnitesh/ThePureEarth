@@ -1,0 +1,20 @@
+.profilebox h2 {
+  text-align: center;
+}
+
+.orderbox .row {
+  padding: 1em;
+  font-size: 20px;
+}
+
+.orderbox .row .statictxt {
+  font-weight: bold;
+  padding: 1em 0 0.5em 0;
+  border-bottom: 0.1em dashed black;
+  margin-bottom: 0.5em;
+}
+
+.orderbox .row hr {
+  height: 0.05em;
+  background-color: black;
+}
