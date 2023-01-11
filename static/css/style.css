@@ -7,18 +7,25 @@
   font-family: "Lato", sans-serif;
 }
 
+
 /* scrollbar */
+
 ::-webkit-scrollbar {
   width: 0.5em;
   height: 0.2em;
 }
+
 ::-webkit-scrollbar-thumb {
   background: black;
   border-radius: 1em;
 }
+
+
 /* ends */
 
+
 /* wrapper content and footer */
+
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -33,6 +40,8 @@
 .content {
   flex-grow: 1;
 }
+
+
 /* ends */
 
 body {
@@ -76,9 +85,13 @@ input {
   text-transform: lowercase;
 }
 
+
 /* row and col */
+
 .row {
   width: 100%;
   margin: auto;
 }
+
+
 /* ends */
