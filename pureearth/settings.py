@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-4eur!0sj$_@al)mg!pmh8q*jj+@pkmtukdgb6q6=qs(@67g0^9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','thepureearth.in']
+ALLOWED_HOSTS = ['*', 'thepureearth.in']
 
 # ALLOWED_HOSTS = ['pureearth.herokuapp.com', '127.0.0.1']
 
@@ -99,8 +99,10 @@ WSGI_APPLICATION = 'pureearth.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'sqlite3.db',                      # Or path to database file if using sqlite3.
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3',
+        # Or path to database file if using sqlite3.
+        'NAME': 'sqlite3.db',
     }
 }
 
@@ -161,7 +163,7 @@ CORS_ORIGIN_ALLOW_ALL = True  # CORS ORIGIN ALLOW ALL
 # E-MAIL Credentials
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_SSL = True
-EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 465

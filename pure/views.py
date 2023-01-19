@@ -154,7 +154,6 @@ def handleSignup(request):
             activate_account(email, auth_token)
             return redirect('/login')
         except Exception as e:
-            print('exception', e)
             messages.error(request, 'Something went wrong {e}')
             return redirect('/signup')
 
