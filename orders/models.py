@@ -1,12 +1,12 @@
 from django.db import models
-from pure.models import Product, UserAuth
+from pure.models import Product, Profile
 from django.contrib.auth.models import User
 # Create your models here.
 
 
 class Order(models.Model):
     user = models.ForeignKey(
-        UserAuth, on_delete=models.CASCADE, null=True, blank=True)
+        Profile, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=13, blank=True, null=True)

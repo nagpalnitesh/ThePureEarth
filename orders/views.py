@@ -1,7 +1,7 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from pure.models import UserAuth
+from pure.models import Profile
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -10,7 +10,7 @@ from django.urls import reverse
 
 def order_create(request):
     cart = Cart(request)
-    current_user = UserAuth.objects.get(user=request.user)
+    current_user = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         fname = request.POST['fname']
         lname = request.POST['lname']

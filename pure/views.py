@@ -60,7 +60,7 @@ def contact(request):
 # Profile page
 @login_required
 def profile(request):
-    userauth_obj = UserAuth.objects.filter(user=request.user).first()
+    userauth_obj = Profile.objects.filter(user=request.user).first()
     orders = Order.objects.filter(user=userauth_obj).order_by('-id')
     return render(request, 'dashboard/profile.html', {'orders': orders})
 
@@ -81,7 +81,7 @@ def handleLogin(request):
         loginpass = request.POST['loginpass']
 
         user = authenticate(username=loginusername, password=loginpass)
-        user_auth_obj = UserAuth.objects.filter(user=user).first()
+        user_auth_obj = Profile.objects.filter(user=user).first()
 
         if not user_auth_obj.is_Verified:
             messages.error(request, 'Please verify your account')
@@ -113,6 +113,7 @@ def handleSignup(request):
         username = request.POST['username']
         firstname = request.POST['fname']
         lastname = request.POST['lname']
+        phone_number = request.POST['phone_number']
         email = request.POST['email']
         pass1 = request.POST['pass1']
         confpass = request.POST['confpass']
@@ -143,19 +144,18 @@ def handleSignup(request):
                 username=username, email=email, first_name=firstname, last_name=lastname)
             user_obj.set_password(pass1)
             user_obj.save()
-            user_auth_obj = UserAuth.objects.create(
-                user=user_obj, auth_token=auth_token)
-            user_auth_obj.save()
+            user_profile = Profile.objects.create(
+                user=user_obj, phone_number=phone_number, email=email, first_name=firstname, last_name=lastname, auth_token=auth_token)
+            user_profile.save()
             messages.success(
                 request, 'Your The Pure Earth account has been successfully created')
             messages.success(
                 request, 'Please check your email for verification')
             activate_account(email, auth_token)
             return redirect('/login')
-
         except Exception as e:
-            print(e)
-            messages.error(request, 'Something went wrong')
+            print('exception', e)
+            messages.error(request, 'Something went wrong {e}')
             return redirect('/signup')
 
     return render(request, 'registration/signup.html')
@@ -173,7 +173,7 @@ def activate_account(email, token):
 # verification function
 def verify(request, auth_token):
     try:
-        user_auth_obj = UserAuth.objects.filter(auth_token=auth_token).first()
+        user_auth_obj = Profile.objects.filter(auth_token=auth_token).first()
         if user_auth_obj:
             # check if user is already verified
             if user_auth_obj.is_Verified:
@@ -204,7 +204,7 @@ def forget_password(request):
         user_obj = User.objects.get(username=username)
         token = str(uuid.uuid4())
         send_forget_password_token(user_obj.email, token)
-        userauth_obj = UserAuth.objects.get(user=user_obj)
+        userauth_obj = Profile.objects.get(user=user_obj)
         userauth_obj.forget_password_token = token
         userauth_obj.save()
         messages.success(request, 'Reset Password Sent')
@@ -220,7 +220,7 @@ def forget_password(request):
 def change_password(request, token):
     context = {}
     try:
-        user_auth_obj = UserAuth.objects.filter(
+        user_auth_obj = Profile.objects.filter(
             forget_password_token=token).first()
         context = {'user_id': user_auth_obj.user.id}
         if request.method == 'POST':
