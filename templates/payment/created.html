@@ -9,19 +9,33 @@
  </p>
 <form action="{% url 'payment:response' %}" method="POST">
 {% csrf_token %}
-<script
-    src="https://checkout.razorpay.com/v1/checkout.js"
-    data-key={{public_key}}
-    data-amount={{ amountorig }}
-    data-buttontext="   Pay with Razorpay   "
-    data-name="The Pure Earth"
-    data-description=""
-    data-image="https://cdn.razorpay.com/logos/I5BCKV50LxqCIa_medium.png"
-    data-prefill.name="The Pure Earth"
-    data-prefill.email="contact@thepureearth.com"
-    data-theme.color="#184081"
-    data-notes.address="The Pure Earth"
-></script>
+<button class="btn pay-btn" id="pay-btn">Pay with Razorpay</button>
+ <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+    var options = {
+        key: "{{public_key}}",
+        amount: "{{amountorig}}", 
+        currency: "INR",
+        name: "The Pure Earth",
+        image: "https://cdn.razorpay.com/logos/I5BCKV50LxqCIa_medium.png",
+        redirect: true,
+        prefill: {
+            "name": "The Pure Earth",
+            "email": "contact@thepureearth.com",
+        },
+        notes: {
+            "address": "The Pure Earth"
+        },
+        theme: {
+            "color": "#184081"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+     document.getElementById("pay-btn").onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    };
+    </script>
 <input type="hidden" value="Hidden Element" name="hidden">
 </form>
 
