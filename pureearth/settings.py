@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-4eur!0sj$_@al)mg!pmh8q*jj+@pkmtukdgb6q6=qs(@67g0^9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'thepureearth.in']
+ALLOWED_HOSTS = ['*', 'thepureearth.com']
 
 # ALLOWED_HOSTS = ['pureearth.herokuapp.com', '127.0.0.1']
 
@@ -142,7 +142,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
