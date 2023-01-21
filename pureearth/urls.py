@@ -26,6 +26,7 @@ urlpatterns = [
     path("payment/", include('payment.urls')),
 ]
 
-# handler404 = 'myapp.views.error_404_view'
+handler404 = 'pure.views.handler404'
+handler500 = 'pure.views.handler500'
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

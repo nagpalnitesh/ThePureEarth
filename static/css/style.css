@@ -108,3 +108,101 @@ input {
     background-color: #a7c6da;
     color: black;
 }
+
+
+/* svg {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -400px;
+} */
+
+.message-box {
+    color: #000;
+    font-weight: 300;
+    text-align: center;
+    margin: 5% 0;
+}
+
+.message-box h1 {
+    font-size: 60px;
+    line-height: 46px;
+    margin-bottom: 40px;
+}
+
+.buttons-con .action-link-wrap {
+    margin-top: 40px;
+}
+
+.buttons-con .action-link-wrap a {
+    /* background: #79b9e7;
+    border-radius: 4px;
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 1em; */
+    background-color: #79b9e7;
+    color: #000;
+    padding: 1em;
+    border-radius: 0.5em;
+    word-spacing: 0.1em;
+}
+
+.buttons-con .action-link-wrap a:hover {
+    background: #5A5C6C;
+    color: #fff;
+}
+
+
+/* #Polygon-1,
+#Polygon-2,
+#Polygon-3,
+#Polygon-4,
+#Polygon-4,
+#Polygon-5 {
+    animation: float 1s infinite ease-in-out alternate;
+}
+
+#Polygon-2 {
+    animation-delay: .2s;
+}
+
+#Polygon-3 {
+    animation-delay: .4s;
+}
+
+#Polygon-4 {
+    animation-delay: .6s;
+}
+
+#Polygon-5 {
+    animation-delay: .8s;
+}
+
+@keyframes float {
+    100% {
+        transform: translateY(20px);
+    }
+}
+
+@media (max-width: 450px) {
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -250px;
+        margin-left: -190px;
+    }
+    .message-box {
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -190px;
+        text-align: center;
+    }
+} */

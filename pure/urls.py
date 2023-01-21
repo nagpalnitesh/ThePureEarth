@@ -22,7 +22,7 @@ app_name = 'pure'
 
 urlpatterns = [
     path('', views.home, name='home'),  # home page
-    path('aboutus', views.about, name='about'),  # about page
+    path('aboutus/', views.about, name='about'),  # about page
     path('contact', views.contact, name='contact'),  # contact page
     path('faq', views.faq, name='faq'),  # faq page
     path('terms-and-conditions', views.tnc, name='terms'),  # terms page
@@ -53,3 +53,6 @@ urlpatterns = [
     # path('order-detail', views.orderdetail,
     #     name='orderdetail'),  # order detail page
 ]
+
+
+handler404 = 'pure.views.handler404'

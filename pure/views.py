@@ -22,6 +22,15 @@ def home(request):
     return render(request, 'screens/Home.html')
 
 
+# Error Page
+def handler404(request, exception):
+    return redirect(request, 'screens/error.html', {}, status=404)
+
+
+def handler500(request, *args, **argv):
+    return render(request, 'screens/error.html', status=500)
+
+
 # FAQ page
 def faq(request):
     return render(request, 'screens/FAQ.html')
