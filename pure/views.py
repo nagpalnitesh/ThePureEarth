@@ -92,18 +92,24 @@ def handleLogin(request):
         user = authenticate(username=loginusername, password=loginpass)
         user_auth_obj = Profile.objects.filter(user=user).first()
 
-        if not user_auth_obj.is_Verified:
-            messages.error(request, 'Please verify your account')
-            return redirect('/login')
-
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'You have been logged in successfully')
-            return redirect('/')
-
-        else:
+        if user is None:
             messages.error(request, 'Invalid Credentials! Please Try Again')
             return redirect('/login')
+
+        else:
+            user_auth_obj = Profile.objects.filter(user=user).first()
+
+            print(user_auth_obj, user)
+
+            if not user_auth_obj.is_Verified:
+                messages.error(request, 'Please verify your account')
+                return redirect('/login')
+
+            if user is not None:
+                login(request, user)
+                messages.success(
+                    request, 'You have been logged in successfully')
+                return redirect('/')
 
     return render(request, 'registration/login.html')
 
