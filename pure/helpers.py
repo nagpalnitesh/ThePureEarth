@@ -15,7 +15,6 @@ Please click on the link below to verify your Pure Earth profile:
 
 https://thepureearth.com/reset-password/{token}
 
-
 If you did not sign up for an account on Pure Earth, please ignore this email and your account will not be created.
 
 We're excited to have you on board and can't wait to see the positive impact you will make in the world!
