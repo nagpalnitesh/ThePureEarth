@@ -75,6 +75,7 @@ def profile(request):
     if request.method == 'POST':
         update_firstName = request.POST['upfname']
         update_lastName = request.POST['uplname']
+        update_phoneNumber = request.POST['upnumber']
         update_email = request.POST['upemail']
         update_password = request.POST['pass2']
         update_confPassword = request.POST['confpass1']
@@ -95,7 +96,7 @@ def profile(request):
             User.objects.filter(id=userauth_obj.user.id).update(
                 email=update_email, first_name=update_firstName, last_name=update_lastName)
             Profile.objects.filter(user=request.user).update(
-                email=update_email, first_name=update_firstName, last_name=update_lastName)
+                email=update_email, first_name=update_firstName, last_name=update_lastName, phone_number=update_phoneNumber)
             messages.success(
                 request, 'Your The Pure Earth account has been successfully updated')
             logout(request)
@@ -104,7 +105,7 @@ def profile(request):
             print('Error', e)
             messages.error(request, 'Something went wrong')
             return redirect('/profile')
-    return render(request, 'dashboard/profile.html', {'orders': orders})
+    return render(request, 'dashboard/profile.html', {'orders': orders, 'profile': userauth_obj})
 
 
 # error page
