@@ -87,9 +87,9 @@ def profile(request):
                     request, 'Password must be atleast 8 characters')
             getUser.set_password(update_password)
             getUser.save()
-            User.objects.update(
+            User.objects.filter(id=userauth_obj.user.id).update(
                 email=update_email, first_name=update_firstName, last_name=update_lastName)
-            Profile.objects.update(
+            Profile.objects.filter(user=request.user).update(
                 email=update_email, first_name=update_firstName, last_name=update_lastName)
             messages.success(
                 request, 'Your The Pure Earth account has been successfully updated')
@@ -255,12 +255,12 @@ def verify(request, auth_token):
 def forget_password(request):
     try:
         if request.method == 'POST':
-            username = request.POST.get('fusername')
-            user_obj = User.objects.filter(username=username).first()
+            email = request.POST.get('femail')
+            user_obj = User.objects.filter(email=email).first()
         if user_obj is None:
             messages.error(request, 'No user found')
             return redirect('/forgot-password')
-        user_obj = User.objects.get(username=username)
+        user_obj = User.objects.get(email=email)
         token = str(uuid.uuid4())
         send_forget_password_token(user_obj.email, token)
         userauth_obj = Profile.objects.get(user=user_obj)
