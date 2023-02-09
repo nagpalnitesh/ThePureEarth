@@ -91,6 +91,10 @@ def profile(request):
                 messages.error(
                     request, 'Password must be atleast 8 characters')
                 return redirect('/profile')
+            if len(update_phoneNumber) < 10 or len(update_phoneNumber) > 10:
+                messages.error(
+                    request, 'Phone number is not valid')
+                return redirect('/profile')
             getUser.set_password(update_password)
             getUser.save()
             User.objects.filter(id=userauth_obj.user.id).update(
