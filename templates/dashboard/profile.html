@@ -106,7 +106,9 @@
                     {% for order in orders %}
                     {% if order.paid %}
                     <div class="col-sm-12 col-md-auto col-lg-3">
-                        <strong>TPE{{order.id}}</strong>
+                        <a href="{% url 'orders:order_detail' order.id %}">
+                            <strong>TPE{{order.id}}</strong>
+                        </a>
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-3">
                         {{ order.braintree_id }}

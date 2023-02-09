@@ -4,6 +4,6 @@ from .models import *
 # Register your models here.
 # admin.site.register(UserAuth)
 admin.site.register(Profile)
-
+admin.site.register(Image)
 admin.site.register(Product)
 admin.site.register(Category)

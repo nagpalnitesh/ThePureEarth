@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+/* :root {
+    transform: scaleX(0.95);
+} */
+
 * {
     margin: 0%;
     padding: 0%;
@@ -69,15 +74,15 @@ a:hover {
 }
 
 h1 {
-    font-size: 30px;
-}
-
-h2 {
     font-size: 24px;
 }
 
-p {
+h2 {
     font-size: 18px;
+}
+
+p {
+    font-size: 14px;
 }
 
 input {

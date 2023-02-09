@@ -5,17 +5,23 @@
      Your order number is <strong>TPE{{ order_id }}</strong>
  </p>
  <p>
-     Your pay amount is <strong>Rs. {{ amount }}</strong> 
+     Your pay amount is <strong>Rs. {{ razorpay_amount }}</strong> 
  </p>
-<form action="{% url 'payment:response' %}" method="POST">
+{% comment %} <form action="{% url 'payment:response' %}" method="POST">
 {% csrf_token %}
-<button class="btn pay-btn" id="pay-btn">Pay with Razorpay</button>
- <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
+<input type="hidden" value="Hidden Element" name="hidden">
+</form> {% endcomment %}
+
+<button class="btn pay-btn" id="pay-btn" >Pay with Razorpay</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
     var options = {
-        key: "{{public_key}}",
-        amount: "{{amountorig}}", 
-        currency: "INR",
+        key: "{{razorpay_merchant_key}}",
+        amount: "{{razorpay_amount}}", 
+        currency: "{{currency}}",
+        order_id: "{{razorpay_order_id}}",
+        callback_url:"http://127.0.0.1:8000/payment/response/",
         name: "The Pure Earth",
         image: "https://cdn.razorpay.com/logos/I5BCKV50LxqCIa_medium.png",
         redirect: true,
@@ -28,15 +34,14 @@
         },
         theme: {
             "color": "#184081"
-        }
+        },
     };
     var rzp1 = new Razorpay(options);
+
      document.getElementById("pay-btn").onclick = function (e) {
       rzp1.open();
       e.preventDefault();
     };
     </script>
-<input type="hidden" value="Hidden Element" name="hidden">
-</form>
 
 {% endblock %}

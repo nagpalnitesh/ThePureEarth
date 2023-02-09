@@ -35,7 +35,7 @@ cart {% endblock %} {% block content %}
                 </div>
               </div>
             </div>
-            <form
+            {% comment %} <form
               class="qtyform"
               action="{% url 'cart:cart_add' product.id %}"
               method="post"
@@ -51,7 +51,35 @@ cart {% endblock %} {% block content %}
                 href="{% url 'cart:cart_remove' product.id %}"
                 >Remove</a
               >
-            </form>
+            </form> {% endcomment %}
+            {% comment %} <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {{ item.update_quantity_form.quantity }}
+              {% csrf_token %}
+              <span> {{ item.update_quantity_form.update }} </span>
+              <input type="submit" value="+" class="btn btn-block btn-success" />
+            </form> {% endcomment %}
+            
+							{% comment %} <form action="{% url 'cart:cart_remove' product.id %}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input hidden type="text" name='remove' value='True'>
+								<input type="submit" value=" - " class="btn btn-block btn-light border-right">
+							</form>
+							<div class="text-center col">{{ item.quantity }} in Cart</div>
+              {% endcomment %}
+							<form action="{% url 'cart:cart_add' product.id %}" class="col-2 " method="post">
+								{% csrf_token %}
+								<button type="submit" name="minus-cart" class="btn btn-block btn-light border-left">-</button>
+                {{item.quantity}}
+								<input hidden type="number" name='quantity' value='{{item.quantity}}'>
+								<button type="submit" name="plus-cart" class="btn btn-block btn-light border-left">+</button>
+							</form> 
+              <form action="{% url 'cart:cart_remove' product.id %}" class="col-2 " method="post">
+                {% csrf_token %}
+                <button type="submit" name="remove" class="btn btn-block btn-light border-left">Remove</button>
+              </form>
+              {% comment %} <span id="quantity">{{item.quantity}}</span>
+              <a class="plus-cart btn" pid={{product.id}}>+</a> {% endcomment %}
           </div>
           {% endwith %} {% endfor %}
           <div class="cartcheckitem">
@@ -98,4 +126,6 @@ cart {% endblock %} {% block content %}
   </div>
   {% endif %}
 </div>
+
 {% endblock %}
+

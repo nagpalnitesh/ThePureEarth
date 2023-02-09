@@ -2,6 +2,7 @@ footer {
   border-top: 0.1em dashed rgba(129, 129, 129, 0.418);
 }
 
+
 /* Footer content */
 
 .about,
@@ -12,22 +13,23 @@ footer {
 }
 
 .footerlogo img {
-  width: 50%;
-  margin: auto 25%;
+  width: 30%;
+  margin: auto 35%;
 }
 
 .quick {
-  margin: 1em auto 0 auto;
+  margin: 0.5em auto 0 auto;
 }
+
 .quick,
 .footcontact {
-  padding: 2% 0 2% 0.5em;
+  /* padding: 1% 0 1% 0.5em; */
 }
 
 .quick h2,
 .footcontact h2 {
   font-weight: bold;
-  padding: 1em 0;
+  padding: 0em 0;
   width: 60%;
   margin: auto;
   text-transform: uppercase;
@@ -35,12 +37,13 @@ footer {
 
 .quick p,
 .footcontact p {
-  padding: 1em 0;
   width: 60%;
   margin: auto;
 }
 
+
 /* ends */
+
 
 /* Copyright and Social Media Links */
 
@@ -55,16 +58,22 @@ footer .copy {
 .footcontact ul li {
   display: inline-block;
   font-size: 30px;
-  padding: 0.1em 0 0 20%;
+  padding: 0.1em 0 0 0;
 }
 
 .footcontact i {
   margin-right: 1em;
 }
+
+
 /* ends */
 
+
 /* Media Queries */
+
+
 /* // Extra small devices (portrait phones, less than 576px) */
+
 @media (max-width: 575.98px) {
   footer {
     border-top: 0.1em dashed rgba(129, 129, 129, 0.418);
@@ -80,6 +89,7 @@ footer .copy {
   .quick {
     margin: 1em auto 0 auto;
   }
+
   .quick,
   .footcontact {
     padding: 2% 0 2% 0em;
@@ -102,9 +112,7 @@ footer .copy {
   }
 
   /* ends */
-
   /* Copyright and Social Media Links */
-
   footer .copy {
     text-align: center;
   }
@@ -116,16 +124,19 @@ footer .copy {
   .footcontact ul li {
     display: inline-block;
     font-size: 30px;
-    padding: 0.1em 0 0 29%;
+    padding: 0.1em 0 0 2%;
   }
 
   .footcontact i {
     margin-right: 1em;
   }
+
   /* ends */
 }
 
+
 /* // Small devices (landscape phones, 576px and up) */
+
 @media (min-width: 576px) and (max-width: 767.98px) {
   footer {
     border-top: 0.1em dashed rgba(129, 129, 129, 0.418);
@@ -141,6 +152,7 @@ footer .copy {
   .quick {
     margin: 1em auto 0 auto;
   }
+
   .quick,
   .footcontact {
     padding: 2% 0 2% 0em;
@@ -163,9 +175,7 @@ footer .copy {
   }
 
   /* ends */
-
   /* Copyright and Social Media Links */
-
   footer .copy {
     text-align: center;
   }
@@ -177,16 +187,18 @@ footer .copy {
   .footcontact ul li {
     display: inline-block;
     font-size: 30px;
-    padding: 0.1em 0 0 29%;
   }
 
   .footcontact i {
     margin-right: 1em;
   }
+
   /* ends */
 }
 
+
 /* // Medium devices (tablets, 768px and up) */
+
 @media (min-width: 768px) and (max-width: 991.98px) {
   footer {
     border-top: 0.1em dashed rgba(129, 129, 129, 0.418);
@@ -202,6 +214,7 @@ footer .copy {
   .quick {
     margin: 1em 0 0 0;
   }
+
   .quick,
   .footcontact {
     padding: 2% 0 2% 0%;
@@ -224,9 +237,7 @@ footer .copy {
   }
 
   /* ends */
-
   /* Copyright and Social Media Links */
-
   footer .copy {
     text-align: center;
   }
@@ -238,16 +249,18 @@ footer .copy {
   .footcontact ul li {
     display: inline-block;
     font-size: 30px;
-    padding: 0.1em 0 0 29%;
   }
 
   .footcontact i {
     margin-right: 1em;
   }
+
   /* ends */
 }
 
+
 /* // Large devices (desktops, 992px and up) */
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
   footer {
     border-top: 0.1em dashed rgba(129, 129, 129, 0.418);
@@ -263,6 +276,7 @@ footer .copy {
   .quick {
     margin: 1em 0 0 0;
   }
+
   .quick,
   .footcontact {
     padding: 2% 0 2% 0%;
@@ -285,9 +299,7 @@ footer .copy {
   }
 
   /* ends */
-
   /* Copyright and Social Media Links */
-
   footer .copy {
     text-align: center;
   }
@@ -299,16 +311,18 @@ footer .copy {
   .footcontact ul li {
     display: inline-block;
     font-size: 30px;
-    padding: 0.1em 0 0 29%;
   }
 
   .footcontact i {
     margin-right: 1em;
   }
+
   /* ends */
 }
 
+
 /* // Extra large devices (large desktops, 1200px and up) */
+
 @media (min-width: 1200px) {
   footer {
     border-top: 0.1em dashed rgba(129, 129, 129, 0.418);
@@ -317,17 +331,15 @@ footer .copy {
   .about,
   .quick,
   .footcontact {
-    padding: 1em 0 0 0%;
     text-align: justify;
   }
 
   .quick {
     margin: 1em 0 0 0;
   }
+
   .quick,
-  .footcontact {
-    padding: 2% 0 2% 0%;
-  }
+  .footcontact {}
 
   .quick h2,
   .footcontact h2 {
@@ -340,15 +352,13 @@ footer .copy {
 
   .quick p,
   .footcontact p {
-    padding: 1em 0;
+    padding: 0.5em 0;
     width: 100%;
     margin: auto 1em;
   }
 
   /* ends */
-
   /* Copyright and Social Media Links */
-
   footer .copy {
     text-align: center;
   }
@@ -360,12 +370,14 @@ footer .copy {
   .footcontact ul li {
     display: inline-block;
     font-size: 30px;
-    padding: 0.1em 0 0 29%;
   }
 
   .footcontact i {
     margin-right: 1em;
   }
+
   /* ends */
 }
+
+
 /* ends */

@@ -60,7 +60,16 @@ class Category(models.Model):
     #     return reverse('shop:product_list_by_category', args=[self.slug])
 
 
+class Image(models.Model):
+    name = models.CharField(max_length=255, default='Product Image')
+    image = models.ImageField(
+        upload_to='product_images', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 # Product Model
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -74,8 +83,7 @@ class Product(models.Model):
     benefits4 = models.CharField(max_length=500, null=True, blank=True)
     benefits5 = models.CharField(max_length=500, null=True, blank=True)
     directions = models.CharField(max_length=500, null=True, blank=True)
-    image = models.ImageField(
-        upload_to='product_images', blank=True, null=True)
+    images = models.ManyToManyField(Image)
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(max_length=200, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)

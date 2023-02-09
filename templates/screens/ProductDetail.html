@@ -5,7 +5,10 @@
     <div class="row">
         <div class="col-sm-12 col-md-auto col-lg-4">
             <div class="detailimg">
-                <img src="{{ product.image.url }}" alt="{{product.name}}">
+                {% for image in product.images.all %}
+        <img src="{{ image.image.url }}">
+    {% endfor %}
+                {% comment %} <img src="{{ product.image.url }}" alt="{{product.name}}"> {% endcomment %}
             </div>
         </div>
         <div class="col-sm-12 col-md-auto col-lg-8">

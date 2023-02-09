@@ -10,10 +10,9 @@
                 <div class="row itemrow">
                     <div class="col-sm-12 col-md-auto col-lg-4">
                         <div class="prodimage">
-                            <img src="{% if product.image %}{{ product.image.url }}
-                    {% else %}
-                        {% static 'img/no_image.png' %}
-                    {% endif %}">
+                            {% for image in product.images.all %}
+                                <img src="{{ image.image.url }}">
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-auto col-lg-8">

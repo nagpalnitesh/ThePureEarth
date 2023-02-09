@@ -3,18 +3,26 @@ from django.views.decorators.http import require_POST
 from pure.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
+from django.http import JsonResponse
+from django.db.models import Q
 
 
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    form = CartAddProductForm(request.POST)
-    print(form)
-    if form.is_valid():
-        cd = form.cleaned_data
-        cart.add(product=product,
-                 quantity=cd['quantity'])
+    quantity = request.POST.get('quantity')
+    qty = int(quantity)
+    if 'plus-cart' in request.POST:
+        qty = qty + 1
+    if 'minus-cart' in request.POST:
+        print('qty', qty)
+        if qty > 0:
+            qty = qty - 1
+            print('-', qty)
+        else:
+            cart.remove(product)
+    cart.add(product=product, quantity=qty)
     return redirect('cart:cart_detail')
 
 

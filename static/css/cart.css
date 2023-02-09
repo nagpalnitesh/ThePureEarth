@@ -31,7 +31,9 @@
   background-color: rgb(199, 196, 196);
 }
 
+
 /* cart details */
+
 .cart-detail {
   padding: 1em;
 }
@@ -135,10 +137,15 @@
   padding: 0.5em 2em;
 }
 
+
 /* ends */
 
+
 /* Media Queries */
+
+
 /* // Extra small devices (portrait phones, less than 576px) */
+
 @media (max-width: 575.98px) {
   .cart_add {
     padding: 1em 0;
@@ -285,10 +292,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
   /* ends */
 }
 
+
 /* // Small devices (landscape phones, 576px and up) */
+
 @media (min-width: 576px) and (max-width: 767.98px) {
   .cart_add {
     padding: 1em 0;
@@ -426,10 +436,13 @@
     border: 0.1em solid rgba(128, 128, 128, 0.5);
     padding: 0.5em 0.5em;
   }
+
   /* ends */
 }
 
+
 /* // Medium devices (tablets, 768px and up) */
+
 @media (min-width: 768px) and (max-width: 991.98px) {
   .cart_add {
     padding: 1em 0;
@@ -567,10 +580,13 @@
     border: 0.1em solid rgba(128, 128, 128, 0.5);
     padding: 0.5em 0.5em;
   }
+
   /* ends */
 }
 
+
 /* // Large devices (desktops, 992px and up) */
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .cart_add {
     padding: 1em 0;
@@ -705,5 +721,6 @@
     border: 0.1em solid rgba(128, 128, 128, 0.5);
     padding: 0.5em 0.5em;
   }
+
   /* ends */
 }
