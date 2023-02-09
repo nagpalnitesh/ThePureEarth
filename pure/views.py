@@ -79,12 +79,17 @@ def profile(request):
         update_password = request.POST['pass2']
         update_confPassword = request.POST['confpass1']
         try:
+            if User.objects.filter(email=update_email).exclude(id=userauth_obj.user.id):
+                messages.error(request, 'Email already exists')
+                return redirect('/profile')
             if update_password != update_confPassword:
                 messages.error(
                     request, 'Password and Confirm Password does not match')
+                return redirect('/profile')
             if len(update_password) < 8:
                 messages.error(
                     request, 'Password must be atleast 8 characters')
+                return redirect('/profile')
             getUser.set_password(update_password)
             getUser.save()
             User.objects.filter(id=userauth_obj.user.id).update(
