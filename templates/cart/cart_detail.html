@@ -18,9 +18,9 @@ cart {% endblock %} {% block content %}
               <div class="col-sm-12 col-md-auto col-lg-4">
                 <div class="itemimg">
                   <a href="{{ product.get_absolute_url }}">
-                    <img
-                      src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-                    />
+                    {% for image in product.images.all %}
+        <img src="{{ image.image.url }}">
+    {% endfor %}
                   </a>
                 </div>
               </div>

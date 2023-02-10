@@ -5,6 +5,9 @@ from cart.cart import Cart
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseBadRequest
+from django.conf import settings
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 
 client = razorpay.Client(
     auth=('rzp_test_Ew6ZzFbU9SzCtp', 'Or5SJfy9sKMhThVFp1h0fN8Z'))
@@ -75,6 +78,9 @@ def payment_process(request):
                     amount_fetch_inr = amount_fetch//100
                     order.save()
                     cart.clear()
+                    if status == 'captured':
+                        print('1')
+                        send_order_confirmarion(order_id)
                     # render success page on successful caputre of payment
                     return render(request, 'payment/done.html', {'amount': amount_fetch_inr, 'status': status})
                 except:
@@ -92,31 +98,6 @@ def payment_process(request):
         print('82')
        # if other than POST request is made.
         return HttpResponseBadRequest()
-    # order_id = request.session.get('order_id')
-    # order = get_object_or_404(Order, id=order_id)
-    # print("Payment", order)
-    # if request.method == "POST":
-    #     order.paid = True
-    #     print("Payment order", order.paid)
-    #     orderitem = get_object_or_404(OrderItem, order=order)
-    #     print("Order Item", orderitem.get_cost())
-    #     amount = int(orderitem.get_cost())*100
-    #     amount_inr = amount//100
-    #     print("Amount ", amount)
-    #     print("Type amount str to int ", amount)
-    #     payment_id = request.POST['razorpay_payment_id']
-    #     order.braintree_id = payment_id
-    #     order.save()
-    #     # print("Multiple value",payment_id)
-    #     print("Payment Id", payment_id)
-    #     payment_client_capture = (client.payment.capture(payment_id, amount))
-    #     print("Payment Client capture", payment_client_capture)
-    #     payment_fetch = client.payment.fetch(payment_id)
-    #     status = payment_fetch['status']
-    #     amount_fetch = payment_fetch['amount']
-    #     amount_fetch_inr = amount_fetch//100
-    #     print("Payment Fetch", payment_fetch['status'])
-    #     return render(request, 'payment/done.html', {'amount': amount_fetch_inr, 'status': status})
 
 
 def payment_done(request):
@@ -141,3 +122,34 @@ def response(request):
     res['signature_algorithm'] = request.GET.get('signature_algorithm')
     print(res)
     return render(request, 'payment/done.html', {'res': res})
+
+
+def send_order_confirmarion(orderId):
+    subject = 'New Order Received on Your Website!'
+    message = f'''Dear Ankur Khurana,
+
+I hope this email finds you well. I am writing to inform you that a new order has been received on your website. Your customers are showing their trust and confidence in your products and services, and this is a testament to the hard work and dedication that you put into your business.
+
+The order details are as follows:
+
+Order Number: {orderId}
+Customer Name: [Customer Name]
+Email: [Customer Email]
+Product Name: [Product Name/s]
+Quantity: [Quantity]
+Total Amount: [Amount]
+It is important to promptly process this order and make sure that the customer receives their product in a timely manner. Please take the necessary actions to fulfill this order and keep your customer satisfied.
+
+If you need any assistance, please do not hesitate to reach out to me. I am here to help in any way that I can.
+
+Thank you for your time and attention.
+
+Best regards,
+
+The Pure Earth'''
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['jmsingh6871@gmail.com']
+    try:
+        send_mail(subject, message, email_from, recipient_list)
+    except:
+        print('mujhe neend aa rhi h, isliye m mail nhi bhej rha ')
