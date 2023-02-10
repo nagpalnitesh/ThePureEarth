@@ -10,6 +10,8 @@ from django.urls import reverse
 
 def order_create(request):
     cart = Cart(request)
+    orderId = request.session.get('order', [])
+    print('orderId', orderId)
     current_user = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         fname = request.POST['fname']
@@ -21,18 +23,13 @@ def order_create(request):
 
         order_obj = Order.objects.create(user=current_user,
                                          first_name=fname, last_name=lname, phone=phone, address=address, city=city, postal_code=pincode)
+        request.session['order_id'] = order_obj.id
         order_obj.save()
-        for item in cart:
-            OrderItem.objects.create(order=order_obj,
-                                     product=item['product'],
-                                     price=item['price'],
-                                     quantity=item['quantity'],)
-            cart.clear()
-            # set the order in the session
-            request.session['order_id'] = order_obj.id
-            # redirect for payment
-            return redirect(reverse('payment:process'))
-            # return render(request, 'payment:process')
+        # set the order in the session
+        # request.session['order_id'] = order_obj.id
+        # redirect for payment
+        return redirect(reverse('payment:process'))
+        # return render(request, 'payment:process')
     else:
         form = OrderCreateForm()
         return render(request,

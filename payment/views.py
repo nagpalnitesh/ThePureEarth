@@ -1,6 +1,7 @@
 import razorpay
 from django.shortcuts import render, get_object_or_404
 from orders.models import Order, OrderItem
+from cart.cart import Cart
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseBadRequest
@@ -12,9 +13,17 @@ client.set_app_details({"title": "Django", "version": "1.8.17"})
 
 
 def create_order(request):
+    cart = Cart(request)
     currency = 'INR'
     order_id = request.session.get('order_id')
+    print(order_id)
     order = get_object_or_404(Order, id=order_id)
+    for item in cart:
+        OrderItem.objects.create(order=order,
+                                 product=item['product'],
+                                 price=item['price'],
+                                 quantity=item['quantity'])
+    print('order', order)
     amount = int(order.get_total_cost()*100)
     razorpay_amount = amount//100
     razorpay_order = client.order.create(dict(amount=amount,
@@ -36,13 +45,12 @@ def create_order(request):
 
 @csrf_exempt
 def payment_process(request):
+    cart = Cart(request)
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     # only accept POST request.
     if request.method == "POST":
         try:
-            orderitem = get_object_or_404(OrderItem, order=order)
-            # get the required parameters from post request.
             payment_id = request.POST.get('razorpay_payment_id', '')
             razorpay_order_id = request.POST.get('razorpay_order_id', '')
             signature = request.POST.get('razorpay_signature', '')
@@ -51,12 +59,11 @@ def payment_process(request):
                 'razorpay_payment_id': payment_id,
                 'razorpay_signature': signature
             }
-
             # verify the payment signature.
             result = client.utility.verify_payment_signature(
                 params_dict)
             if result is not None:
-                amount = int(orderitem.get_cost())*100  # Rs. 200
+                amount = int(order.get_total_cost())*100  # Rs. 200
                 try:
                     # capture the payemt
                     client.payment.capture(payment_id, amount)
@@ -67,18 +74,22 @@ def payment_process(request):
                     amount_fetch = payment_fetch['amount']
                     amount_fetch_inr = amount_fetch//100
                     order.save()
+                    cart.clear()
                     # render success page on successful caputre of payment
                     return render(request, 'payment/done.html', {'amount': amount_fetch_inr, 'status': status})
                 except:
                     # if there is an error while capturing payment.
                     return render(request, 'payment/canceled.html')
+
             else:
                 # if signature verification fails.
                 return render(request, 'payment/canceled.html')
         except:
+            print('79')
             # if we don't find the required parameters in POST data
             return HttpResponseBadRequest()
     else:
+        print('82')
        # if other than POST request is made.
         return HttpResponseBadRequest()
     # order_id = request.session.get('order_id')
@@ -109,10 +120,16 @@ def payment_process(request):
 
 
 def payment_done(request):
+    cart = Cart(request)
+    print('done', cart)
+    cart.clear()
     return render(request, 'payment/done.html', {})
 
 
 def payment_canceled(request):
+    cart = Cart(request)
+    print('canceled', cart)
+    cart.clear()
     return render(request, 'payment/canceled.html', {})
 
 
