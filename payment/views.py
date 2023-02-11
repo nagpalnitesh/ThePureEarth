@@ -8,6 +8,7 @@ from django.http import HttpResponseBadRequest
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from pure.models import Profile
 
 client = razorpay.Client(
     auth=('rzp_test_Ew6ZzFbU9SzCtp', 'Or5SJfy9sKMhThVFp1h0fN8Z'))
@@ -49,6 +50,8 @@ def create_order(request):
 @csrf_exempt
 def payment_process(request):
     cart = Cart(request)
+    userauth_obj = Profile.objects.filter(user=request.user).first()
+    print(userauth_obj.email)
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     # only accept POST request.
@@ -80,7 +83,11 @@ def payment_process(request):
                     cart.clear()
                     if status == 'captured':
                         print('1')
-                        send_order_confirmarion(order_id)
+                        try:
+                            send_order_confirmation(order_id)
+                            send_order_confirmationUser(userauth_obj, order_id)
+                        except:
+                            return render(request, 'payment/done.html', {'amount': amount_fetch_inr, 'status': status})
                     # render success page on successful caputre of payment
                     return render(request, 'payment/done.html', {'amount': amount_fetch_inr, 'status': status})
                 except:
@@ -124,7 +131,7 @@ def response(request):
     return render(request, 'payment/done.html', {'res': res})
 
 
-def send_order_confirmarion(orderId):
+def send_order_confirmation(orderId):
     subject = 'New Order Received on Your Website!'
     message = f'''Dear Ankur Khurana,
 
@@ -149,6 +156,35 @@ Best regards,
 The Pure Earth'''
     email_from = settings.EMAIL_HOST_USER
     recipient_list = ['jmsingh6871@gmail.com']
+    try:
+        send_mail(subject, message, email_from, recipient_list)
+    except:
+        print('mujhe neend aa rhi h, isliye m mail nhi bhej rha ')
+
+
+def send_order_confirmationUser(userauth_obj, orderId):
+    subject = 'New Order Received on Your Website!'
+    message = f'''Dear Ankur Khurana,
+
+I hope this email finds you well. I am writing to inform you that a new order has been received on your website. Your customers are showing their trust and confidence in your products and services, and this is a testament to the hard work and dedication that you put into your business.
+
+The order details are as follows:
+
+Order Number: {orderId}
+Customer Name: {userauth_obj.name}
+Email: {userauth_obj.email}
+
+It is important to promptly process this order and make sure that the customer receives their product in a timely manner. Please take the necessary actions to fulfill this order and keep your customer satisfied.
+
+If you need any assistance, please do not hesitate to reach out to me. I am here to help in any way that I can.
+
+Thank you for your time and attention.
+
+Best regards,
+
+The Pure Earth'''
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [userauth_obj.email]
     try:
         send_mail(subject, message, email_from, recipient_list)
     except:
