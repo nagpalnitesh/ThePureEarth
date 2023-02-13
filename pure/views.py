@@ -185,6 +185,9 @@ def handleSignup(request):
             if len(pass1) < 8:
                 messages.error(
                     request, 'Password must be atleast 8 characters')
+            if len(phone_number) < 10 or len(phone_number) > 10:
+                messages.error(
+                    request, 'Phone number is not valid')
                 return redirect('/signup')
             if len(username) < 6 and not username.isalnum():
                 messages.error(

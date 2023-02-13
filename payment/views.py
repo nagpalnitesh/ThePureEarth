@@ -38,6 +38,7 @@ def create_order(request):
     callback_url = 'response/'
 
     context = {}
+    context['order_id'] = order_id
     context['razorpay_order_id'] = razorpay_order_id
     context['razorpay_merchant_key'] = 'rzp_test_Ew6ZzFbU9SzCtp'
     context['razorpay_amount'] = razorpay_amount
@@ -84,24 +85,28 @@ def payment_process(request):
                     if status == 'captured':
                         print('1')
                         try:
-                            send_order_confirmation(order_id)
+                            send_order_confirmation(userauth_obj, order_id)
                             send_order_confirmationUser(userauth_obj, order_id)
                         except:
                             return render(request, 'payment/done.html', {'amount': amount_fetch_inr, 'status': status})
                     # render success page on successful caputre of payment
                     return render(request, 'payment/done.html', {'amount': amount_fetch_inr, 'status': status})
                 except:
+                    cart.clear()
                     # if there is an error while capturing payment.
                     return render(request, 'payment/canceled.html')
 
             else:
+                cart.clear()
                 # if signature verification fails.
                 return render(request, 'payment/canceled.html')
         except:
             print('79')
+            cart.clear()
             # if we don't find the required parameters in POST data
             return HttpResponseBadRequest()
     else:
+        cart.clear()
         print('82')
        # if other than POST request is made.
         return HttpResponseBadRequest()
@@ -131,7 +136,10 @@ def response(request):
     return render(request, 'payment/done.html', {'res': res})
 
 
-def send_order_confirmation(orderId):
+def send_order_confirmation(userauth_obj, orderId):
+    email = userauth_obj.email
+    name = userauth_obj.first_name.capitalize(
+    ) + " " + userauth_obj.last_name.capitalize()
     subject = 'New Order Received on Your Website!'
     message = f'''Dear Ankur Khurana,
 
@@ -140,11 +148,8 @@ I hope this email finds you well. I am writing to inform you that a new order ha
 The order details are as follows:
 
 Order Number: {orderId}
-Customer Name: [Customer Name]
-Email: [Customer Email]
-Product Name: [Product Name/s]
-Quantity: [Quantity]
-Total Amount: [Amount]
+Customer Name: {name}
+Email: {email}
 It is important to promptly process this order and make sure that the customer receives their product in a timely manner. Please take the necessary actions to fulfill this order and keep your customer satisfied.
 
 If you need any assistance, please do not hesitate to reach out to me. I am here to help in any way that I can.
@@ -163,16 +168,17 @@ The Pure Earth'''
 
 
 def send_order_confirmationUser(userauth_obj, orderId):
+    email = userauth_obj.email
+    name = userauth_obj.first_name.capitalize(
+    ) + " " + userauth_obj.last_name.capitalize()
     subject = 'New Order Received on Your Website!'
-    message = f'''Dear Ankur Khurana,
+    message = f'''Hi {name},
 
 I hope this email finds you well. I am writing to inform you that a new order has been received on your website. Your customers are showing their trust and confidence in your products and services, and this is a testament to the hard work and dedication that you put into your business.
 
 The order details are as follows:
 
 Order Number: {orderId}
-Customer Name: {userauth_obj.name}
-Email: {userauth_obj.email}
 
 It is important to promptly process this order and make sure that the customer receives their product in a timely manner. Please take the necessary actions to fulfill this order and keep your customer satisfied.
 
@@ -184,7 +190,7 @@ Best regards,
 
 The Pure Earth'''
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [userauth_obj.email]
+    recipient_list = [email]
     try:
         send_mail(subject, message, email_from, recipient_list)
     except:
