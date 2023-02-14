@@ -32,7 +32,7 @@ cart {% endblock %} {% block content %}
                           <img
                             src="{{ image.image.url }}"
                             class="img-fluid d-block"
-                            alt="..."
+                            alt="{{product.name}}"
                           />
                         </div>
                         {% endfor %}
@@ -43,66 +43,73 @@ cart {% endblock %} {% block content %}
               </div>
               <div class="col-sm-12 col-md-auto col-8">
                 <div class="itemtxt">
-                  <p>
+                  <h3>
                     <a href="{{ product.get_absolute_url }}">
                       {{ product.name }}
                     </a>
-                  </p>
-                  <p style="font-weight: 600">Rs. {{ item.total_price }}</p>
+                  </h3>
+                  <h5 style="font-weight: 600">Rs. {{ item.total_price }}</h5>
                 </div>
               </div>
             </div>
-            <form
-              action="{% url 'cart:cart_add' product.id %}"
-              class="col-6 qty-form"
-              method="post"
-            >
-              {% csrf_token %}
-              <div class="row">
-                <div class="col-md-2">
-                  <button
-                    type="submit"
-                    name="minus-cart"
-                    class="btn btn-block btn-light border-left d-inline p-2"
-                  >
-                    -
-                  </button>
-                </div>
-                <div class="col-md-2">
-                  {{item.quantity}}
-                  <input
-                    hidden
-                    type="number"
-                    name="quantity"
-                    value="{{item.quantity}}"
-                  />
-                </div>
-                <div class="col-md-2">
-                  <button
-                    type="submit"
-                    name="plus-cart"
-                    class="btn btn-block btn-light border-left d-inline p-2"
-                  >
-                    +
-                  </button>
-                </div>
-                <div class="col-md-6"></div>
+            <div class="row my-3">
+              <div class="col-sm-12 col-md-auto col-lg-4">
+                <form
+                  action="{% url 'cart:cart_add' product.id %}"
+                  class="qty-form"
+                  method="post"
+                >
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-md-3">
+                      <button
+                        type="submit"
+                        name="minus-cart"
+                        class="btn btn-block btn-dark border-left d-inline p-2 shadow"
+                      >
+                        -
+                      </button>
+                    </div>
+                    <div
+                      class="col-md-6 text-center pt-2 bg-light rounded shadow"
+                    >
+                      {{item.quantity}}
+                      <input
+                        hidden
+                        type="number"
+                        name="quantity"
+                        value="{{item.quantity}}"
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <button
+                        type="submit"
+                        name="plus-cart"
+                        class="btn btn-block btn-dark border-left d-inline p-2 shadow"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
-            </form>
-            <form
-              action="{% url 'cart:cart_remove' product.id %}"
-              class="col-2"
-              method="post"
-            >
-              {% csrf_token %}
-              <button
-                type="submit"
-                name="remove"
-                class="btn btn-block btn-light border-left"
-              >
-                Remove
-              </button>
-            </form>
+              <div class="col-sm-12 col-md-auto col-lg-8">
+                <form
+                  action="{% url 'cart:cart_remove' product.id %}"
+                  class="col-4 ml-auto"
+                  method="post"
+                >
+                  {% csrf_token %}
+                  <button
+                    type="submit"
+                    name="remove"
+                    class="btn btn-block btn-danger border-left p-2"
+                  >
+                    Remove
+                  </button>
+                </form>
+              </div>
+            </div>
             {% comment %} <span id="quantity">{{item.quantity}}</span>
             <a class="plus-cart btn" pid="{{product.id}}">+</a> {% endcomment %}
           </div>
