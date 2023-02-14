@@ -6,6 +6,7 @@ from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from django.urls import reverse
+from django.contrib import messages
 
 
 def order_create(request):
@@ -20,6 +21,11 @@ def order_create(request):
         address = request.POST['address']
         city = request.POST['city']
         pincode = request.POST['pincode']
+
+        if len(phone) < 10 or len(phone) > 10:
+            messages.error(
+                request, 'Phone number is not valid')
+            return redirect('/orders/create')
 
         order_obj = Order.objects.create(user=current_user,
                                          first_name=fname, last_name=lname, phone=phone, address=address, city=city, postal_code=pincode)

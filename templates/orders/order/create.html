@@ -1,59 +1,67 @@
 {% extends "index.html" %} {% block content %}
 <div class="order_create">
+  <!-- Message Alert -->
+  {% if messages %} {% for message in messages %}
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% comment %}
+  <div class="alert alert-info">{{ message }}</div>
+  {% endcomment %} {% endfor %} {% endif %}
   <div class="message-box">
-    <h1>Checkout</h1>
-    <h3>Your Order Details</h3>
-    <table class="table">
-      <tr>
-        <th>
-          <h2 class="text-uppercase">
-            <strong> Product Name </strong>
-          </h2>
-        </th>
-        <th>
-          <h2 class="text-uppercase">
-            <strong> Quantity </strong>
-          </h2>
-        </th>
-        <th>
-          <h2 class="text-uppercase">
-            <strong> Total Price </strong>
-          </h2>
-        </th>
-      </tr>
-      {% for item in cart %}
-      <tr>
-        <td>
-          <h2 class="text-capitalize">
-            <strong>{{item.product.name}}</strong>
-          </h2>
-        </td>
-        <td>
-          <h2>
-            <strong>{{item.quantity}}</strong>
-          </h2>
-        </td>
-        <td>
-          <h2>
-            <strong>{{item.total_price}}</strong>
-          </h2>
-        </td>
-      </tr>
-      {% endfor %}
-      <tr>
-        <td></td>
-        <td>
-          <h2>
-            <strong>Total Amount: </strong>
-          </h2>
-        </td>
-        <td>
-          <h2>
-            <strong> Rs. {{ cart.get_total_price }} </strong>
-          </h2>
-        </td>
-      </tr>
-    </table>
+    <div class="">
+      <h1>Checkout</h1>
+    </div>
+    <div class="px-5 text-center">
+      <table class="table">
+        <tr>
+          <th scope="col-2" class="w-25">
+            <h2 class="text-uppercase">
+              <strong> Product Name </strong>
+            </h2>
+          </th>
+          <th scope="col-2" class="w-25">
+            <h2 class="text-uppercase">
+              <strong> Quantity </strong>
+            </h2>
+          </th>
+          <th scope="col-2" class="w-25">
+            <h2 class="text-uppercase">
+              <strong> Total Price </strong>
+            </h2>
+          </th>
+        </tr>
+        {% for item in cart %}
+        <tr>
+          <td>
+            <h2 class="text-capitalize">{{item.product.name}}</h2>
+          </td>
+          <td>
+            <h2>{{item.quantity}}</h2>
+          </td>
+          <td>
+            <h2>{{item.total_price}}</h2>
+          </td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td>
+            <h2>
+              <strong>Total Amount: </strong>
+            </h2>
+          </td>
+          <td>
+            <h2>
+              <strong> Rs. {{ cart.get_total_price }} </strong>
+            </h2>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
   <form action="." method="post" class="order-form">
     {% csrf_token %}

@@ -16,13 +16,15 @@ def cart_add(request, product_id):
     if 'plus-cart' in request.POST:
         qty = qty + 1
     if 'minus-cart' in request.POST:
-        print('qty', qty)
         if qty > 0:
             qty = qty - 1
-            print('-', qty)
+            if qty == 0:
+                cart.remove(product)
         else:
+            print('else', qty)
             cart.remove(product)
-    cart.add(product=product, quantity=qty)
+    if qty >= 1:
+        cart.add(product=product, quantity=qty)
     return redirect('cart:cart_detail')
 
 

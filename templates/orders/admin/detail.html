@@ -12,73 +12,88 @@
   &rsaquo; Detail
 </div>
 {% endblock %} {% endcomment %} {% block content %}
-<h1 class="my-3">Order {{ order.id }}</h1>
-{% comment %}
-<button class="btn btn-info my-3">
-  <a href="#" onclick="window.print();">Print order</a>
-</button>
-{% endcomment %}
-<div class="my-3">
-  <table class="table table-responsive">
-    <tr>
-      <th>Created</th>
-      <td>{{ order.created }}</td>
-    </tr>
-    <tr>
-      <th>Customer</th>
-      <td>{{ order.first_name }} {{ order.last_name }}</td>
-    </tr>
-    <tr>
-      <th>Phone Number</th>
-      <td>
-        <a href="tel:{{ order.phone }}">{{ order.phone }}</a>
-      </td>
-    </tr>
-    <tr>
-      <th>Address</th>
-      <td>{{ order.address }}, {{ order.postal_code }} {{ order.city }}</td>
-    </tr>
-    <tr>
-      <th>Total amount</th>
-      <td>Rs. {{ order.get_total_cost }}</td>
-    </tr>
-    <tr>
-      <th>Status</th>
-      <td>{% if order.paid %}Paid{% else %}Pending payment{% endif %}</td>
-    </tr>
-  </table>
+<div class="text-center">
+  <button class="btn btn-link text-dark my-3 p-2" onclick="window.print();">
+    <h3>
+      <strong>Invoice</strong>
+    </h3>
+  </button>
 </div>
-<div class="module my-3">
-  <div class="tabular inline-related last-related">
-    <h2 class="text-uppercase">
-      <strong> Items bought </strong>
-    </h2>
-    <table class="table table-responsive text-center">
-      <thead>
+<div class="row">
+  <div class="col-md-6">
+    <div class="my-5">
+      <table class="table table-responsive">
         <tr>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total</th>
+          <th>Order No.</th>
+          <td>{{ order.id }}</td>
         </tr>
-      </thead>
-      <tbody>
-        {% for item in order.items.all %}
         <tr>
-          <td>{{ item.product.name }}</td>
-          <td class="num">Rs. {{ item.price }}</td>
-          <td class="num">{{ item.quantity }}</td>
-          <td class="num">Rs. {{ item.get_cost }}</td>
+          <th>Name</th>
+          <td>{{ order.first_name }} {{ order.last_name }}</td>
         </tr>
-        {% endfor %}
         <tr>
-          <td></td>
-          <td></td>
-          <td>Total</td>
-          <td class="num">Rs. {{ order.get_total_cost }}</td>
+          <th>Phone Number</th>
+          <td>{{ order.phone }}</td>
         </tr>
-      </tbody>
-    </table>
+        <tr>
+          <th>Address</th>
+          <td>{{ order.address }}, {{ order.postal_code }} {{ order.city }}</td>
+        </tr>
+        <tr>
+          <th>Total amount</th>
+          <td>Rs. {{ order.get_total_cost }}</td>
+        </tr>
+        <tr>
+          <th>Date</th>
+          <td>{{ order.created }}</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td class="text-success">
+            <strong
+              >{% if order.paid %}Paid{% else %}Pending payment{% endif %}
+            </strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="my-5">
+      <div class="tabular inline-related last-related">
+        <h2 class="text-uppercase">
+          <strong> Items bought </strong>
+        </h2>
+        <table class="table table-responsive text-center">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in order.items.all %}
+            <tr>
+              <td>{{ item.product.name }}</td>
+              <td class="num">Rs. {{ item.price }}</td>
+              <td class="num">{{ item.quantity }}</td>
+              <td class="num">Rs. {{ item.get_cost }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <strong>Total</strong>
+              </td>
+              <td class="num">Rs. {{ order.get_total_cost }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

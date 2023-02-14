@@ -18,7 +18,7 @@
 
 .cart_add .homecart {
   text-align: center;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   font-size: 24px;
   width: fit-content;
   margin: auto;
@@ -41,9 +41,9 @@
 .cartpro {
   margin: 1em 0 2em 0;
   padding: 1em 0;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   border-radius: 0.2em;
-  border: 0.1em solid rgba(128, 128, 128, 0.384);
+  /* border: 0.1em solid rgba(128, 128, 128, 0.384); */
   box-shadow: inset 0em 0em 0.1em rgba(0, 0, 0, 0.5);
 }
 
@@ -84,9 +84,9 @@
 
 .cartbox {
   padding: 1.5em 1em;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   border-radius: 0.5em;
-  border: 0.1em solid rgba(128, 128, 128, 0.384);
+  /* border: 0.1em solid rgba(128, 128, 128, 0.384); */
   width: 70%;
   margin: 1em 15%;
 }
