@@ -1,36 +1,52 @@
-{% extends 'index.html' %}
-{% load static %}
-{% block content %}
+{% extends 'index.html' %} {% load static %} {% block content %}
 <div class="products">
-    <h1>Our Products</h1>
-    <div class="row">
-        <div class="col-sm-12 col-md-auto col-lg-12">
-            {% for product in products %}
-            <div class="item">
-                <div class="row itemrow">
-                    <div class="col-sm-12 col-md-auto col-lg-4">
-                        <div class="prodimage">
-                            {% for image in product.images.all %}
-                                <img src="{{ image.image.url }}">
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-auto col-lg-8">
-                        <div class="prodtxt">
-                            <h2>{{product.name}}</h2>
-                            <p>{{product.b_description}}</p>
-                            <a href="{{ product.get_absolute_url }}">
-                                <p>
-                                    Explore Now
-                                    <i class="fas fa-arrow-right"></i>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
+  <h1>Our Products</h1>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-auto col-lg-12">
+      {% for product in products %}
+      <div class="item">
+        <div class="row itemrow">
+          <div class="col-sm-12 col-md-auto col-lg-4">
+            <div class="prodimage">
+              <div
+                id="carouselExampleControls"
+                class="carousel slide"
+                data-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  {% for image in product.images.all %}
+                  <div
+                    class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}"
+                    data-interval="{% if forloop.counter0 == 0 %} 10 {% endif %}"
+                  >
+                    <img
+                      src="{{ image.image.url }}"
+                      class="img-fluid d-block"
+                      alt="Product Image"
+                    />
+                  </div>
+                  {% endfor %}
                 </div>
+              </div>
             </div>
-            {% endfor %}
+          </div>
+          <div class="col-sm-12 col-md-auto col-lg-8">
+            <div class="prodtxt">
+              <h2>{{product.name}}</h2>
+              <p>{{product.b_description}}</p>
+              <a href="{{ product.get_absolute_url }}">
+                <p>
+                  Explore Now
+                  <i class="fas fa-arrow-right"></i>
+                </p>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
 {% endblock %}

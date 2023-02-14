@@ -1,11 +1,5 @@
 /* Products List Page */
 
-
-/* 
-.products {
-  background-color: red;
-} */
-
 .products h1 {
   font-size: 50px;
   font-weight: bold;
@@ -44,6 +38,17 @@
   font-size: 20px;
   width: 95%;
   text-align: justify;
+  word-wrap: break-word;
+}
+
+.product-detail .detailtxt p,
+.product-detail .detailtxt ul li,
+.product-detail .detailtxt1 p {
+  padding: 0.5em 0;
+  font-size: 20px;
+  width: 95%;
+  text-align: justify;
+  word-wrap: break-word;
 }
 
 
@@ -57,8 +62,8 @@
 }
 
 .product-detail .detailimg img {
-  width: 40%;
-  margin: 1em 30%;
+  width: 100%;
+  margin: 1em 0%;
 }
 
 .product-detail .detailtxt,

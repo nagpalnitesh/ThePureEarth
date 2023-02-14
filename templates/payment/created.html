@@ -1,47 +1,54 @@
-{% extends "index.html" %}
-{% block content %}
- <h1>Complete payment details to confirm order</h1>
- <p>
-     Your order number is <strong>TPE{{ order_id }}</strong>
- </p>
- <p>
-     Your pay amount is <strong>Rs. {{ razorpay_amount }}</strong> 
- </p>
-{% comment %} <form action="{% url 'payment:response' %}" method="POST">
-{% csrf_token %}
-<input type="hidden" value="Hidden Element" name="hidden">
-</form> {% endcomment %}
+{% extends "index.html" %} {% block content %}
 
-<button class="btn pay-btn" id="pay-btn" >Pay with Razorpay</button>
-
+<div class="message-box">
+  <h1>Complete payment details to confirm order</h1>
+  <h3>Your order number is <strong>TPE{{ order_id }}</strong></h3>
+  <h3>Your pay amount is <strong>Rs. {{ razorpay_amount }}</strong></h3>
+  <div class="buttons-con">
+    <div class="action-link-wrap">
+      {% comment %}
+      <a onclick="history.back(-1)" class="link-button link-back-button"
+        >Go Back</a
+      >
+      {% endcomment %}
+      <button class="btn pay-btn" id="pay-btn">Pay with Razorpay</button>
+    </div>
+  </div>
+</div>
+{% comment %}
+<form action="{% url 'payment:response' %}" method="POST">
+  {% csrf_token %}
+  <input type="hidden" value="Hidden Element" name="hidden" />
+</form>
+{% endcomment %}
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-    var options = {
-        key: "{{razorpay_merchant_key}}",
-        amount: "{{razorpay_amount}}", 
-        currency: "{{currency}}",
-        order_id: "{{razorpay_order_id}}",
-        callback_url:"http://127.0.0.1:8000/payment/response/",
-        name: "The Pure Earth",
-        image: "https://cdn.razorpay.com/logos/I5BCKV50LxqCIa_medium.png",
-        redirect: true,
-        prefill: {
-            "name": "The Pure Earth",
-            "email": "contact@thepureearth.com",
-        },
-        notes: {
-            "address": "The Pure Earth"
-        },
-        theme: {
-            "color": "#184081"
-        },
-    };
-    var rzp1 = new Razorpay(options);
+  var options = {
+    key: "{{razorpay_merchant_key}}",
+    amount: "{{razorpay_amount}}",
+    currency: "{{currency}}",
+    order_id: "{{razorpay_order_id}}",
+    callback_url: "http://127.0.0.1:8000/payment/response/",
+    name: "The Pure Earth",
+    image: "https://cdn.razorpay.com/logos/I5BCKV50LxqCIa_medium.png",
+    redirect: true,
+    prefill: {
+      name: "The Pure Earth",
+      email: "contact@thepureearth.com",
+    },
+    notes: {
+      address: "The Pure Earth",
+    },
+    theme: {
+      color: "#184081",
+    },
+  };
+  var rzp1 = new Razorpay(options);
 
-     document.getElementById("pay-btn").onclick = function (e) {
-      rzp1.open();
-      e.preventDefault();
-    };
-    </script>
+  document.getElementById("pay-btn").onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+  };
+</script>
 
 {% endblock %}

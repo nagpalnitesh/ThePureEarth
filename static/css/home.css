@@ -148,9 +148,9 @@
 }
 
 .productscard {
-    width: 30vw;
-    height: fit-content;
-    margin: auto;
+    width: 25vw;
+    height: 60vh;
+    margin: auto 20%;
     border-radius: 1em;
     background-color: white;
     box-shadow: 0.2em 0.2em 0.5em rgba(54, 54, 54, 0.7);
@@ -175,13 +175,13 @@
 }
 
 .productscard .productimg img {
-    width: 55%;
-    margin: 1em 22.9%;
+    width: 50%;
+    margin: 1em 25%;
 }
 
 .productscard .prodImg img {
-    width: 25%;
-    margin: 1em 22.9%;
+    width: 33%;
+    margin: 1em 33%;
 }
 
 
@@ -194,23 +194,27 @@
 /* // Extra small devices (portrait phones, less than 576px) */
 
 @media (max-width: 575.98px) {
+
     /* Section 1 */
     .home .homediv {
         padding: 0 2em;
         position: relative;
         height: 40vh;
     }
+
     .homediv .homeimg {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
     .homeimg img {
         width: 150%;
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .hometxt {
         /* background-color: aliceblue; */
         width: fit-content;
@@ -221,21 +225,25 @@
         font-style: italic;
         text-align: center;
     }
+
     .hometxt h1 {
         font-weight: bold;
         font-size: 28px;
         margin-bottom: 0.5em;
         letter-spacing: 0.1em;
     }
+
     .hometxt h2 {
         font-size: 20px;
     }
+
     /* ends */
     /* Section 2 */
     .homecards {
         /* background-color: yellow; */
         padding: 5vh 0;
     }
+
     .cardbox {
         margin-bottom: 1em;
         width: 100%;
@@ -243,11 +251,13 @@
         border-radius: 1em;
         background-color: black;
     }
+
     .cardbox .cardimg {
         width: 100%;
         height: 60vh;
         border-radius: 1em;
     }
+
     .cardbox .cardimg1 {
         background: url("../images/aloe-vera.jpg");
         background-repeat: no-repeat;
@@ -255,6 +265,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg2 {
         background: url("../images/drop.jpg");
         background-repeat: no-repeat;
@@ -262,6 +273,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg3 {
         background: url("../images/skincare.jpg");
         background-repeat: no-repeat;
@@ -269,6 +281,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardtxt {
         position: absolute;
         left: 50%;
@@ -281,6 +294,7 @@
         color: white;
         font-size: 20px;
     }
+
     /* ends */
     /* Section 3 */
     .homequote {
@@ -295,6 +309,7 @@
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .homequote .quotetxt h2 {
         font-size: 30px;
         font-style: italic;
@@ -304,46 +319,67 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
     /* ends */
     /* Section 4 */
     .productsdiv {
         padding: 1em;
         margin: 2em 0 0 0;
     }
+
     .productsdiv .col-lg-6 {
         padding: 1em;
     }
+
     .productscard {
         width: 100%;
-        height: fit-content;
-        margin: auto;
+        height: 60vh;
+        margin: auto 0%;
         border-radius: 1em;
         background-color: white;
         box-shadow: 0.2em 0.2em 0.5em rgba(54, 54, 54, 0.7);
     }
+
     .productscard .producttxt {
         text-align: center;
-        padding: 1em 0;
+        padding: 2em 0;
         font-weight: bold;
     }
+
     .productscard .producttxt h2 {
-        font-size: 24px;
+        font-size: 30px;
         font-weight: bold;
     }
+
     .productscard .producttxt p {
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin: 1em 0;
         font-size: 16px;
     }
+
     .productscard .productimg img {
-        width: 55%;
-        margin: 1em 22.9%;
+        width: 30%;
+        margin: 0em 35%;
     }
+
     .productscard .prodImg img {
-        width: 25%;
-        margin: 1em 22.9%;
+        width: 20%;
+        margin: 0em 40%;
     }
+
+    @media (min-width: 320px) and (max-width: 560px) {
+        .productscard .productimg img {
+            width: 120px;
+            margin: 2em 30%;
+        }
+
+        .productscard .prodImg img {
+            width: 90px;
+            margin: 2em 40%;
+        }
+    }
+
     /* ends */
 }
 
@@ -351,23 +387,27 @@
 /* // Small devices (landscape phones, 576px and up) */
 
 @media (min-width: 576px) and (max-width: 767.98px) {
+
     /* Section 1 */
     .home .homediv {
         padding: 0 2em;
         position: relative;
         height: 50vh;
     }
+
     .homediv .homeimg {
         position: absolute;
         top: 50%;
         left: 60%;
         transform: translate(-50%, -50%);
     }
+
     .homeimg img {
         width: 150%;
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .hometxt {
         /* background-color: aliceblue; */
         width: fit-content;
@@ -377,21 +417,25 @@
         transform: translate(-50%, -50%);
         font-style: italic;
     }
+
     .hometxt h1 {
         font-weight: bold;
         font-size: 40px;
         margin-bottom: 0.5em;
         letter-spacing: 0.1em;
     }
+
     .hometxt h2 {
         font-size: 30px;
     }
+
     /* ends */
     /* Section 2 */
     .homecards {
         /* background-color: yellow; */
         padding: 5vh 0;
     }
+
     .cardbox {
         margin-bottom: 1em;
         width: 100%;
@@ -399,11 +443,13 @@
         border-radius: 1em;
         background-color: black;
     }
+
     .cardbox .cardimg {
         width: 100%;
         height: 60vh;
         border-radius: 1em;
     }
+
     .cardbox .cardimg1 {
         background: url("../images/aloe-vera.jpg");
         background-repeat: no-repeat;
@@ -411,6 +457,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg2 {
         background: url("../images/drop.jpg");
         background-repeat: no-repeat;
@@ -418,6 +465,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg3 {
         background: url("../images/skincare.jpg");
         background-repeat: no-repeat;
@@ -425,6 +473,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardtxt {
         position: absolute;
         left: 50%;
@@ -437,6 +486,7 @@
         color: white;
         font-size: 20px;
     }
+
     /* ends */
     /* Section 3 */
     .homequote {
@@ -451,6 +501,7 @@
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .homequote .quotetxt h2 {
         font-size: 30px;
         font-style: italic;
@@ -460,47 +511,55 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
     /* ends */
     /* Section 4 */
     .productsdiv {
         padding: 1em;
         margin: 2em 0 0 0;
     }
+
     .productsdiv .col-lg-6 {
         padding: 1em;
     }
+
     .productscard {
         width: 100%;
-        height: fit-content;
-        margin: auto;
+        height: 60vh;
+        margin: auto 0%;
         border-radius: 1em;
         background-color: white;
         box-shadow: 0.2em 0.2em 0.5em rgba(54, 54, 54, 0.7);
     }
+
     .productscard .producttxt {
         text-align: center;
-        padding: 1em 0;
+        padding: 2em 0;
         font-weight: bold;
     }
+
     .productscard .producttxt h2 {
         font-size: 30px;
         font-weight: bold;
-        margin-top: 1em;
     }
+
     .productscard .producttxt p {
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin: 1em 0;
         font-size: 16px;
     }
+
     .productscard .productimg img {
-        width: 55%;
-        margin: 1em 22.9%;
+        width: 120px;
+        margin: 0em 40%;
     }
+
     .productscard .prodImg img {
-        width: 25%;
-        margin: 1em 22.9%;
+        width: 90px;
+        margin: 0em 40%;
     }
+
     /* ends */
 }
 
@@ -508,23 +567,27 @@
 /* // Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px) and (max-width: 991.98px) {
+
     /* Section 1 */
     .home .homediv {
         padding: 0 2em;
         position: relative;
         height: 60vh;
     }
+
     .homediv .homeimg {
         position: absolute;
         top: 50%;
         left: 60%;
         transform: translate(-50%, -50%);
     }
+
     .homeimg img {
         width: 130%;
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .hometxt {
         /* background-color: aliceblue; */
         width: fit-content;
@@ -535,21 +598,25 @@
         font-style: italic;
         text-align: center;
     }
+
     .hometxt h1 {
         font-weight: bold;
         font-size: 45px;
         margin-bottom: 0.5em;
         letter-spacing: 0.1em;
     }
+
     .hometxt h2 {
         font-size: 30px;
     }
+
     /* ends */
     /* Section 2 */
     .homecards {
         /* background-color: yellow; */
         padding: 5vh 7vw;
     }
+
     .cardbox {
         width: 70vw;
         height: 70vh;
@@ -557,11 +624,13 @@
         background-color: black;
         margin-bottom: 2em;
     }
+
     .cardbox .cardimg {
         width: 70vw;
         height: 70vh;
         border-radius: 1em;
     }
+
     .cardbox .cardimg1 {
         background: url("../images/aloe-vera.jpg");
         background-repeat: no-repeat;
@@ -569,6 +638,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg2 {
         background: url("../images/drop.jpg");
         background-repeat: no-repeat;
@@ -576,6 +646,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg3 {
         background: url("../images/skincare.jpg");
         background-repeat: no-repeat;
@@ -583,6 +654,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardtxt {
         position: absolute;
         left: 50%;
@@ -594,6 +666,7 @@
         transform: translate(-50%, -50%);
         color: white;
     }
+
     /* ends */
     /* Section 3 */
     .homequote {
@@ -608,6 +681,7 @@
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .homequote .quotetxt h2 {
         font-size: 50px;
         font-style: italic;
@@ -617,46 +691,55 @@
         left: 35%;
         transform: translate(-50%, -50%);
     }
+
     /* ends */
     /* Section 4 */
     .productsdiv {
         padding: 1em;
         margin: 2em 0 0 0;
     }
+
     .productsdiv .col-lg-6 {
         padding: 1em;
     }
+
     .productscard {
-        width: 70vw;
-        height: fit-content;
-        margin: 2em 5vw;
+        width: 50vw;
+        height: 60vh;
+        margin: auto 25%;
         border-radius: 1em;
         background-color: white;
         box-shadow: 0.2em 0.2em 0.5em rgba(54, 54, 54, 0.7);
     }
+
     .productscard .producttxt {
         text-align: center;
         padding: 2em 0;
         font-weight: bold;
     }
+
     .productscard .producttxt h2 {
         font-size: 30px;
         font-weight: bold;
     }
+
     .productscard .producttxt p {
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin: 1em 1em;
-        font-size: 20px;
+        margin: 1em 0;
+        font-size: 16px;
     }
+
     .productscard .productimg img {
-        width: 55%;
-        margin: 1em 22.9%;
+        width: 120px;
+        margin: 0em 40%;
     }
+
     .productscard .prodImg img {
-        width: 25%;
-        margin: 1em 22.9%;
+        width: 90px;
+        margin: 0em 40%;
     }
+
     /* ends */
 }
 
@@ -664,22 +747,26 @@
 /* // Large devices (desktops, 992px and up) */
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
+
     /* Section 1 */
     .home .homediv {
         padding: 0 2em;
         position: relative;
         height: 70vh;
     }
+
     .homediv .homeimg {
         position: absolute;
         top: 50%;
         left: 65%;
         transform: translate(-50%, -50%);
     }
+
     .homeimg img {
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .hometxt {
         /* background-color: aliceblue; */
         width: fit-content;
@@ -689,32 +776,38 @@
         transform: translate(-50%, -50%);
         font-style: italic;
     }
+
     .hometxt h1 {
         font-weight: bold;
         font-size: 65px;
         margin-bottom: 0.5em;
         letter-spacing: 0.1em;
     }
+
     .hometxt h2 {
         font-size: 30px;
     }
+
     /* ends */
     /* Section 2 */
     .homecards {
         /* background-color: yellow; */
         padding: 5vh 1vw;
     }
+
     .cardbox {
         width: 26vw;
         height: 60vh;
         border-radius: 1em;
         background-color: black;
     }
+
     .cardbox .cardimg {
         width: 26vw;
         height: 60vh;
         border-radius: 1em;
     }
+
     .cardbox .cardimg1 {
         background: url("../images/aloe-vera.jpg");
         background-repeat: no-repeat;
@@ -722,6 +815,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg2 {
         background: url("../images/drop.jpg");
         background-repeat: no-repeat;
@@ -729,6 +823,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg3 {
         background: url("../images/skincare.jpg");
         background-repeat: no-repeat;
@@ -736,6 +831,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardtxt {
         position: absolute;
         left: 50%;
@@ -747,6 +843,7 @@
         transform: translate(-50%, -50%);
         color: white;
     }
+
     /* ends */
     /* Section 3 */
     .homequote {
@@ -761,6 +858,7 @@
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .homequote .quotetxt h2 {
         font-size: 50px;
         font-style: italic;
@@ -770,45 +868,53 @@
         left: 35%;
         transform: translate(-50%, -50%);
     }
+
     /* ends */
     /* Section 4 */
     .productsdiv {
         padding: 1em;
         margin: 2em 0 0 0;
     }
+
     .productsdiv .col-lg-6 {
         padding: 1em;
     }
+
     .productscard {
-        width: 40vw;
-        height: fit-content;
-        margin: auto;
+        width: 35vw;
+        height: 60vh;
+        margin: auto 5%;
         border-radius: 1em;
         background-color: white;
         box-shadow: 0.2em 0.2em 0.5em rgba(54, 54, 54, 0.7);
     }
+
     .productscard .producttxt {
         text-align: center;
         padding: 2em 0;
         font-weight: bold;
     }
+
     .productscard .producttxt h2 {
         font-size: 30px;
         font-weight: bold;
     }
+
     .productscard .producttxt p {
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin: 1em 0;
-        font-size: 14px;
+        font-size: 16px;
     }
+
     .productscard .productimg img {
-        width: 55%;
-        margin: 1em 22.9%;
+        width: 50%;
+        margin: 1em 25%;
     }
+
     .productscard .prodImg img {
-        width: 25%;
-        margin: 1em 22.9%;
+        width: 33%;
+        margin: 1em 33%;
     }
 }
 
@@ -816,6 +922,7 @@
 /* // Extra large devices (large desktops, 1200px and up) */
 
 @media (min-width: 1200px) {
+
     /* .home {
   background-color: blue;
 } */
@@ -825,16 +932,19 @@
         position: relative;
         height: 70vh;
     }
+
     .homediv .homeimg {
         position: absolute;
         top: 50%;
         left: 75%;
         transform: translate(-50%, -50%);
     }
+
     .homeimg img {
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .hometxt {
         /* background-color: aliceblue; */
         width: fit-content;
@@ -844,32 +954,38 @@
         transform: translate(-50%, -50%);
         font-style: italic;
     }
+
     .hometxt h1 {
         font-weight: bold;
         font-size: 70px;
         margin-bottom: 0.5em;
         letter-spacing: 0.1em;
     }
+
     .hometxt h2 {
         font-size: 30px;
     }
+
     /* ends */
     /* Section 2 */
     .homecards {
         /* background-color: yellow; */
         padding: 5vh 4vw;
     }
+
     .cardbox {
         width: 25vw;
-        height: 80vh;
+        height: 60vh;
         border-radius: 1em;
         background-color: black;
     }
+
     .cardbox .cardimg {
         width: 25vw;
-        height: 80vh;
+        height: 60vh;
         border-radius: 1em;
     }
+
     .cardbox .cardimg1 {
         background: url("../images/aloe-vera.jpg");
         background-repeat: no-repeat;
@@ -877,6 +993,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg2 {
         background: url("../images/drop.jpg");
         background-repeat: no-repeat;
@@ -884,6 +1001,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardimg3 {
         background: url("../images/skincare.jpg");
         background-repeat: no-repeat;
@@ -891,6 +1009,7 @@
         background-position: 0% 70%;
         opacity: 0.5;
     }
+
     .cardbox .cardtxt {
         position: absolute;
         left: 50%;
@@ -902,6 +1021,7 @@
         transform: translate(-50%, -50%);
         color: white;
     }
+
     /* ends */
     /* Section 3 */
     .homequote {
@@ -916,6 +1036,7 @@
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.5);
     }
+
     .homequote .quotetxt h2 {
         font-size: 50px;
         font-style: italic;
@@ -925,46 +1046,55 @@
         left: 35%;
         transform: translate(-50%, -50%);
     }
+
     /* ends */
     /* Section 4 */
     .productsdiv {
         padding: 1em;
         margin: 2em 0 0 0;
     }
+
     .productsdiv .col-lg-6 {
         padding: 1em;
     }
+
     .productscard {
-        width: 40vw;
-        height: fit-content;
-        margin: auto;
+        width: 25vw;
+        height: 60vh;
+        margin: auto 20%;
         border-radius: 1em;
         background-color: white;
         box-shadow: 0.2em 0.2em 0.5em rgba(54, 54, 54, 0.7);
     }
+
     .productscard .producttxt {
         text-align: center;
         padding: 2em 0;
         font-weight: bold;
     }
+
     .productscard .producttxt h2 {
         font-size: 30px;
         font-weight: bold;
     }
+
     .productscard .producttxt p {
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin: 1em 0;
         font-size: 16px;
     }
+
     .productscard .productimg img {
-        width: 55%;
-        margin: 1em 22.9%;
+        width: 50%;
+        margin: 1em 25%;
     }
+
     .productscard .prodImg img {
         width: 33%;
         margin: 1em 33%;
     }
+
     /* ends */
 }
 

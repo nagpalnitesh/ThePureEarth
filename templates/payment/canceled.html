@@ -1,6 +1,18 @@
-{% extends "index.html" %}
+{% extends "index.html" %} {% block content %}
 
-{% block content %}
-<h1>Your payment has not been processed</h1>
-<p>There was a problem processing your payment.</p>
+<div class="message-box">
+  <h1>Your payment has not been processed</h1>
+  <p>There was a problem processing your payment.</p>
+  <div class="buttons-con">
+    <div class="action-link-wrap">
+      {% comment %}
+      <a onclick="history.back(-1)" class="link-button link-back-button"
+        >Go Back</a
+      >
+      {% endcomment %}
+      <a href="/" class="link-button">Go to HomePage</a>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

@@ -18,9 +18,26 @@ cart {% endblock %} {% block content %}
               <div class="col-sm-12 col-md-auto col-lg-4">
                 <div class="itemimg">
                   <a href="{{ product.get_absolute_url }}">
-                    {% for image in product.images.all %}
-        <img src="{{ image.image.url }}">
-    {% endfor %}
+                    <div
+                      id="carouselExampleControls"
+                      class="carousel slide"
+                      data-ride="carousel"
+                    >
+                      <div class="carousel-inner">
+                        {% for image in product.images.all %}
+                        <div
+                          class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}"
+                          data-interval="{% if forloop.counter0 == 0 %} 10 {% endif %}"
+                        >
+                          <img
+                            src="{{ image.image.url }}"
+                            class="img-fluid d-block"
+                            alt="..."
+                          />
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
                   </a>
                 </div>
               </div>
@@ -35,58 +52,66 @@ cart {% endblock %} {% block content %}
                 </div>
               </div>
             </div>
-            {% comment %} <form
-              class="qtyform"
+            <form
               action="{% url 'cart:cart_add' product.id %}"
+              class="col-6 qty-form"
               method="post"
             >
               {% csrf_token %}
-              <span class="qty">
-                {{ item.update_quantity_form.quantity }}
-              </span>
-              <span> {{ item.update_quantity_form.update }} </span>
-              <input type="submit" value="Update" class="updatebtn" />
-              <a
-                class="removelink"
-                href="{% url 'cart:cart_remove' product.id %}"
-                >Remove</a
-              >
-            </form> {% endcomment %}
-            {% comment %} <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{ item.update_quantity_form.quantity }}
+              <div class="row">
+                <div class="col-md-2">
+                  <button
+                    type="submit"
+                    name="minus-cart"
+                    class="btn btn-block btn-light border-left d-inline p-2"
+                  >
+                    -
+                  </button>
+                </div>
+                <div class="col-md-2">
+                  {{item.quantity}}
+                  <input
+                    hidden
+                    type="number"
+                    name="quantity"
+                    value="{{item.quantity}}"
+                  />
+                </div>
+                <div class="col-md-2">
+                  <button
+                    type="submit"
+                    name="plus-cart"
+                    class="btn btn-block btn-light border-left d-inline p-2"
+                  >
+                    +
+                  </button>
+                </div>
+                <div class="col-md-6"></div>
+              </div>
+            </form>
+            <form
+              action="{% url 'cart:cart_remove' product.id %}"
+              class="col-2"
+              method="post"
+            >
               {% csrf_token %}
-              <span> {{ item.update_quantity_form.update }} </span>
-              <input type="submit" value="+" class="btn btn-block btn-success" />
-            </form> {% endcomment %}
-            
-							{% comment %} <form action="{% url 'cart:cart_remove' product.id %}" class="col-2 " method="post">
-								{% csrf_token %}
-								<input hidden type="text" name='product' value='{{product.id}}'>
-								<input hidden type="text" name='remove' value='True'>
-								<input type="submit" value=" - " class="btn btn-block btn-light border-right">
-							</form>
-							<div class="text-center col">{{ item.quantity }} in Cart</div>
-              {% endcomment %}
-							<form action="{% url 'cart:cart_add' product.id %}" class="col-2 " method="post">
-								{% csrf_token %}
-								<button type="submit" name="minus-cart" class="btn btn-block btn-light border-left">-</button>
-                {{item.quantity}}
-								<input hidden type="number" name='quantity' value='{{item.quantity}}'>
-								<button type="submit" name="plus-cart" class="btn btn-block btn-light border-left">+</button>
-							</form> 
-              <form action="{% url 'cart:cart_remove' product.id %}" class="col-2 " method="post">
-                {% csrf_token %}
-                <button type="submit" name="remove" class="btn btn-block btn-light border-left">Remove</button>
-              </form>
-              {% comment %} <span id="quantity">{{item.quantity}}</span>
-              <a class="plus-cart btn" pid={{product.id}}>+</a> {% endcomment %}
+              <button
+                type="submit"
+                name="remove"
+                class="btn btn-block btn-light border-left"
+              >
+                Remove
+              </button>
+            </form>
+            {% comment %} <span id="quantity">{{item.quantity}}</span>
+            <a class="plus-cart btn" pid="{{product.id}}">+</a> {% endcomment %}
           </div>
           {% endwith %} {% endfor %}
           <div class="cartcheckitem">
             <p class="cartch">
-                  <a href="{% url 'pure:products_list' %}" class="shopcont">
-                  Continue shopping
-                </a>
+              <a href="{% url 'pure:products_list' %}" class="shopcont">
+                Continue shopping
+              </a>
               {% if user.is_authenticated%}
               <a href="{% url 'orders:order_create' %}" class="cartcheck">
                 Checkout
@@ -128,4 +153,3 @@ cart {% endblock %} {% block content %}
 </div>
 
 {% endblock %}
-

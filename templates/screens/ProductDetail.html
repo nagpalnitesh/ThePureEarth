@@ -5,9 +5,26 @@
     <div class="row">
         <div class="col-sm-12 col-md-auto col-lg-4">
             <div class="detailimg">
-                {% for image in product.images.all %}
-        <img src="{{ image.image.url }}">
-    {% endfor %}
+                <div
+                id="carouselExampleControls"
+                class="carousel slide"
+                data-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  {% for image in product.images.all %}
+                  <div
+                    class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}"
+                    data-interval="{% if forloop.counter0 == 0 %} 10 {% endif %}"
+                  >
+                    <img
+                      src="{{ image.image.url }}"
+                      class="img-fluid d-block"
+                      alt="..."
+                    />
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
                 {% comment %} <img src="{{ product.image.url }}" alt="{{product.name}}"> {% endcomment %}
             </div>
         </div>

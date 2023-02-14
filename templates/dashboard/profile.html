@@ -108,40 +108,32 @@
         </div>
         <div class="col-sm-12 col-md-auto col-lg-8">
             <div class="orderbox">
-                <div class="row" style="text-align: center;">
-                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
-                        OrderId
-                    </div>
-                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
-                        Payment Status
-                    </div>
-                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
-                        Order Placed On
-                    </div>
-                    <div class="col-sm-12 col-md-auto col-lg-3 statictxt">
-                        Track Your Order
-                    </div>
+                <div class="text-center table-responsive">
+                    <h1>Your Orders</h1>
+                    <table class="table">
+                        <tr class="w-100">
+                            <th class="w-25">Order Id</th>
+                            <th class="w-25">Payment Id</th>
+                            <th class="w-25">Order Placed On</th>
+                            <th class="w-25">Track Your Order</th>
+                        </tr>
                     {% for order in orders %}
                     {% if order.paid %}
-                    <div class="col-sm-12 col-md-auto col-lg-3">
-                        <a href="{% url 'orders:order_detail' order.id %}">
+                        <tr>
+                            <td class="w-25">
+                                <a href="{% url 'orders:order_detail' order.id %}">
                             <strong>TPE{{order.id}}</strong>
                         </a>
-                    </div>
-                    <div class="col-sm-12 col-md-auto col-lg-3">
-                        {{ order.braintree_id }}
-                    </div>
-                    <div class="col-sm-12 col-md-auto col-lg-3">
-                        {{order.created}}
-                    </div>
-                    <div class="col-sm-12 col-md-auto col-lg-3">
-                        <a href="{{order.order_track_link}}" target="_blank">
+                            </td>
+                            <td class="w-25"> {{ order.braintree_id }}</td>
+                            <td class="w-25">{{order.created}}</td>
+                            <td class="w-25"><a href="{{order.order_track_link}}" target="_blank">
                             <strong>{{order.order_track_number}}</strong>
-                        </a>
-                    </div>
-                    <hr>
+                        </a></td>
+                        </tr>
                     {% endif %}
                     {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>
