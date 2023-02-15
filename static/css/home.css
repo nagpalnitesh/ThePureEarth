@@ -370,13 +370,13 @@
 
     @media (min-width: 320px) and (max-width: 560px) {
         .productscard .productimg img {
-            width: 30%;
-            margin: 0em 35%;
+            width: 40%;
+            margin: 0em 30%;
         }
 
         .productscard .prodImg img {
-            width: 20%;
-            margin: 0em 40%;
+            width: 30%;
+            margin: 0em 35%;
         }
     }
 
