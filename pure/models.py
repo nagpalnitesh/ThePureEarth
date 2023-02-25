@@ -84,6 +84,10 @@ class Product(models.Model):
     benefits5 = models.CharField(max_length=500, null=True, blank=True)
     directions = models.CharField(max_length=500, null=True, blank=True)
     images = models.ManyToManyField(Image)
+    # main_image = models.OneToOneField(
+    #     Image, on_delete=models.CASCADE, related_name='carousel_image', default='')
+    main_image = models.ForeignKey(
+        Image, on_delete=models.CASCADE, related_name='carousel_image', null=False, default=5)
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(max_length=200, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)

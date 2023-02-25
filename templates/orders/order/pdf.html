@@ -38,6 +38,18 @@
             </tr>
             {% endfor %}
             <tr class="total">
+                <td colspan="3">Deliver Charges</td>
+          {% if order.total_price <= 650 %}
+          <td>
+            <h2>Rs. 70</h2>
+          </td>
+          {% else %}
+          <td style="color: rgb(4, 167, 4); text-transform: uppercase">
+            <h2>Free</h2>
+          </td>
+          {% endif %}
+            </tr>
+            <tr class="total">
                 <td colspan="3">Total</td>
                 <td class="num">Rs. {{ order.get_total_cost }}</td>
             </tr>

@@ -43,10 +43,29 @@
             <h2>{{item.quantity}}</h2>
           </td>
           <td>
-            <h2>{{item.total_price}}</h2>
+            <h2>Rs. {{item.total_price}}</h2>
           </td>
         </tr>
         {% endfor %}
+        <tr>
+          <td>
+            <h2 class="text-capitalize"></h2>
+          </td>
+          <td>
+            <h2>
+              <strong>Delivery Charges</strong>
+            </h2>
+          </td>
+          {% if cart.total_price <= 650 %}
+          <td>
+            <h2>Rs. 70</h2>
+          </td>
+          {% else %}
+          <td style="color: rgb(4, 167, 4); text-transform: uppercase">
+            <h2>Free</h2>
+          </td>
+          {% endif %}
+        </tr>
         <tr>
           <td></td>
           <td>

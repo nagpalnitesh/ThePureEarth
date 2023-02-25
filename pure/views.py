@@ -18,8 +18,14 @@ from cart.forms import *
 
 
 # Home page
-def home(request):
-    return render(request, 'screens/Home.html')
+def home(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.filter(is_active=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+    return render(request, 'screens/Home.html', {'category': category, 'categories': categories, 'products': products})
 
 
 # Error Page

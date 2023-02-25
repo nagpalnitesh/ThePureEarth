@@ -65,7 +65,7 @@ cart {% endblock %} {% block content %}
                       <button
                         type="submit"
                         name="minus-cart"
-                        class="btn btn-block btn-danger shadow border d-inline p-2"
+                        class="btn btn-block btn-dark shadow border d-inline p-2"
                       >
                         -
                       </button>
@@ -85,7 +85,7 @@ cart {% endblock %} {% block content %}
                       <button
                         type="submit"
                         name="plus-cart"
-                        class="btn btn-block btn-success border d-inline p-2 shadow"
+                        class="btn btn-block btn-dark border d-inline p-2 shadow"
                       >
                         +
                       </button>
@@ -103,7 +103,7 @@ cart {% endblock %} {% block content %}
                   <button
                     type="submit"
                     name="remove"
-                    class="btn btn-block btn-danger border-left p-2"
+                    class="btn btn-block btn-dark border-left p-2"
                   >
                     Remove
                   </button>
@@ -142,13 +142,17 @@ cart {% endblock %} {% block content %}
               <table class="cart-table">
                 <tr class="price">
                   <td>Price</td>
-                  <td>Rs. {{ cart.get_total_price }}</td>
+                  <td>Rs. {{ cart.total_price }}</td>
                 </tr>
                 <tr class="price">
                   <td>Delivery Charges</td>
+                  {% if cart.total_price <= 650 %}
+                  <td>Rs. 70</td>
+                  {% else %}
                   <td style="color: rgb(4, 167, 4); text-transform: uppercase">
                     Free
                   </td>
+                  {% endif %}
                 </tr>
                 <tr class="total">
                   <td>Total Amount</td>

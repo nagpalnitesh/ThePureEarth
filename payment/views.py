@@ -20,13 +20,13 @@ def create_order(request):
     cart = Cart(request)
     currency = 'INR'
     order_id = request.session.get('order_id')
-    print(order_id)
     order = get_object_or_404(Order, id=order_id)
     for item in cart:
         OrderItem.objects.create(order=order,
                                  product=item['product'],
                                  price=item['price'],
                                  quantity=item['quantity'])
+        print(item['quantity'])
     print('order', order)
     amount = int(order.get_total_cost()*100)
     razorpay_amount = amount//100
@@ -171,20 +171,20 @@ def send_order_confirmationUser(userauth_obj, orderId):
     email = userauth_obj.email
     name = userauth_obj.first_name.capitalize(
     ) + " " + userauth_obj.last_name.capitalize()
-    subject = 'New Order Received on Your Website!'
-    message = f'''Hi {name},
+    subject = 'Your Order Has Been Placed Successfully!'
+    message = f'''Dear {name},
+    
+Thank you for shopping with us on our website! We are excited to inform you that your order has been placed successfully and we are working hard to fulfill it for you.
 
-I hope this email finds you well. I am writing to inform you that a new order has been received on your website. Your customers are showing their trust and confidence in your products and services, and this is a testament to the hard work and dedication that you put into your business.
-
-The order details are as follows:
+Your order details are as follows:
 
 Order Number: {orderId}
 
-It is important to promptly process this order and make sure that the customer receives their product in a timely manner. Please take the necessary actions to fulfill this order and keep your customer satisfied.
+We appreciate your business and are committed to providing you with excellent customer service. If you have any questions or concerns, please do not hesitate to reach out to us.
 
-If you need any assistance, please do not hesitate to reach out to me. I am here to help in any way that I can.
+To track your order, please visit our website [Website URL]. This will give you the most up-to-date information on your order status and estimated delivery time.
 
-Thank you for your time and attention.
+Once again, thank you for shopping with us. We look forward to serving you again in the future.
 
 Best regards,
 

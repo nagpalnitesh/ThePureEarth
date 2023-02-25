@@ -1,68 +1,97 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="icon" href="{% static 'images/pureearth_logo_circle.png'%}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#000000">
-        <meta name="description" content="Web site created using create-react-app">
-        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png">
-        <title>The Pure Earth</title>
-        <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
-        
-        <!-- FontAwesome CDN -->
-        <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-            integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-            crossorigin="anonymous"
-        >
-        <!-- ends -->
-        <!-- BootStraps CDN -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossorigin="anonymous"
-        >
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <!-- ends -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <!-- CSS goes here -->
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-        <link rel="stylesheet" href="{% static 'css/static.css' %}">
-        <link rel="stylesheet" href="{% static 'css/about.css' %}">
-        <link rel="stylesheet" href="{% static 'css/faq.css' %}">
-        <link rel="stylesheet" href="{% static 'css/home.css' %}">
-        <link rel="stylesheet" href="{% static 'css/product.css' %}">
-        <link rel="stylesheet" href="{% static 'css/cart.css' %}">
-        <link rel="stylesheet" href="{% static 'css/orders.css' %}">
-        <link rel="stylesheet" href="{% static 'css/registration.css' %}">
-        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-        {% comment %} <link rel="stylesheet" href="{% static 'css/error.css' %}"> {% endcomment %}
-        {% comment %} <link rel="stylesheet" href="{% static 'css/orderDetail.css' %}"> {% endcomment %}
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="content">
-                <div class="container-fluid">
-                    <!-- Navbar -->
-                    {% include 'components/navbar.html'%}
-                    <!-- ends -->
-                    <div class="main">
-                        <!-- Block Content -->
-                        {% block content %} {% endblock %}
-                        <!-- End of content -->
-                    </div>
-                </div>
-            </div>
-            <div class="footer">{% include 'components/footer.html'%}</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="{% static 'images/pureearth_logo_circle.png'%}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <title>The Pure Earth</title>
+    <script
+      src="https://www.google.com/recaptcha/enterprise.js"
+      async
+      defer
+    ></script>
+
+    <!-- FontAwesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <!-- ends -->
+    <!-- BootStraps CDN -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <!-- ends -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- CSS goes here -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/static.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/about.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/product.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+    {% comment %}
+    <link rel="stylesheet" href="{% static 'css/error.css' %}" />
+    {% endcomment %} {% comment %}
+    <link rel="stylesheet" href="{% static 'css/orderDetail.css' %}" />
+    {% endcomment %}
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <div class="container-fluid">
+          <!-- Navbar -->
+          {% include 'components/navbar.html'%}
+          <!-- ends -->
+          <div class="main">
+            <!-- Block Content -->
+            {% block content %} {% endblock %}
+            <!-- End of content -->
+          </div>
         </div>
-    </body>
+      </div>
+      <div class="footer">{% include 'components/footer.html'%}</div>
+    </div>
+  </body>
 </html>

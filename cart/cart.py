@@ -63,14 +63,21 @@ class Cart():
         """
         Remove a product from the cart.
         """
-        print('66', product, product.id)
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
         self.save()
 
+    def total_price(self):
+        return sum(Decimal(item['price']) * item['quantity']
+                   for item in self.cart.values())
+
     def get_total_price(self):
-        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        total_price = sum(Decimal(item['price']) * item['quantity']
+                          for item in self.cart.values())
+        if (total_price <= 650):
+            return total_price + 70
+        return total_price
 
     def clear(self):
         # remove cart from session
